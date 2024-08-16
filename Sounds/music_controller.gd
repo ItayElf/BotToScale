@@ -7,8 +7,8 @@ const _LOWER_VOLUME := 10.0
 
 var _last_played: AudioStream = null
 
-@onready var background_player := $BackgroundMusic
-@onready var effects_player := $EffectsPlayer
+@onready var background_player: AudioStreamPlayer = $BackgroundMusic
+@onready var effects_player: AudioStreamPlayer= $EffectsPlayer
 
 ## This function plays background music. 
 ## It assumes that the given stream is looping (check import panel).
