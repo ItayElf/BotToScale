@@ -13,3 +13,7 @@ config_version=5
 config/name="GMTK2024"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MusicController="*res://Sounds/music_controller.tscn"
