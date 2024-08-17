@@ -1,12 +1,8 @@
 extends CharacterBody2D
-@export var speed = 250 ##we will change it later
-@onready var player = get_node("../Player") ##finds player
+@export var speed: float = 10000
+@onready var player = get_node("../Player")
 
 func _physics_process(delta):
-	var direction = global_position.direction_to(player.global_position) ##gets the direction
-	position += direction * speed * delta ##moves enemy
-	look_at(player.global_position) ##looks at player
+	var direction = global_position.direction_to(player.global_position)
+	velocity = direction * speed * delta
 	move_and_slide()
-
-
-

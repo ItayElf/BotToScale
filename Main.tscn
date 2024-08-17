@@ -16,11 +16,16 @@ offset_bottom = 50.0
 color = Color(0.696986, 0.318592, 0.494194, 1)
 
 [node name="Enemy1" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(-30, -7)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(75, -31)
 
 [node name="Enemy3" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(-62, 72)
 
 [node name="Enemy4" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(11, 100)
 
 [node name="Enemy5" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(75, 35)
