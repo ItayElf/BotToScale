@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgqnjmirbnduv"]
 
-[ext_resource type="Script" path="res://settings.gd" id="1_jb7hy"]
+[ext_resource type="Script" path="res://ui/settings/settings.gd" id="1_jb7hy"]
 [ext_resource type="PackedScene" uid="uid://ddj51pwdfx5e7" path="res://volume_slider.tscn" id="2_f2tc0"]
 
 [node name="Settings" type="Control"]
@@ -31,18 +31,18 @@ busname = "Master"
 [node name="Button" type="Button" parent="."]
 visibility_layer = 0
 layout_mode = 0
-offset_left = 10.0
-offset_top = 503.0
-offset_right = 165.0
-offset_bottom = 639.0
+offset_left = 47.0
+offset_top = 485.0
+offset_right = 202.0
+offset_bottom = 621.0
 text = "Back"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 501.0
-offset_right = 166.0
-offset_bottom = 640.0
+offset_left = 49.0
+offset_top = 482.0
+offset_right = 203.0
+offset_bottom = 621.0
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
