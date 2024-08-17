@@ -11,8 +11,6 @@ func _ready():
 
 
 func _on_body_entered(body):
-	if not (body is Player):
-		return
 	var player: Player = body
 	player.add_health(heal_amount)
 	queue_free()

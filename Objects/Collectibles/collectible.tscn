@@ -9,7 +9,7 @@ size = Vector2(14, 14)
 
 [node name="Collectible" type="Area2D"]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 4
 script = ExtResource("1_bnn34")
 sprites = Array[Resource]([ExtResource("2_iybna")])
 
