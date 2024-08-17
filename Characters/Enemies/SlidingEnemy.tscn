@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6l6rvw6xacjb"]
+
+[ext_resource type="Script" path="res://Characters/Enemies/SlidingEnemy.gd" id="1_664ww"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxj3v"]
+radius = 21.2132
+
+[node name="SlidingEnemy" type="CharacterBody2D"]
+collision_layer = 2
+platform_floor_layers = 0
+script = ExtResource("1_664ww")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lxj3v")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.719446, 0.588127, 0.241394, 1)
+polygon = PackedVector2Array(-12, -16, 12, -16, 12, 16, -12, 16)
