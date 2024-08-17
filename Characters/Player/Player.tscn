@@ -9,6 +9,8 @@ size = Vector2(127, 129)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_44d34")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="Roomba" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_o54q1")
@@ -24,8 +26,6 @@ offset_top = -96.5
 offset_right = 40.5
 offset_bottom = -73.5
 text = "ROOMBA"
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Blender" type="CollisionShape2D" parent="."]
 visible = false
