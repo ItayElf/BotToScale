@@ -19,12 +19,37 @@ offset_right = 173.0
 offset_bottom = 533.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
+visibility_layer = 0
 layout_mode = 2
 text = "Start"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
+visibility_layer = 0
 layout_mode = 2
 text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.136
+offset_left = 94.0
+offset_top = 467.0
+offset_right = 154.416
+offset_bottom = 411.872
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 501.0
+offset_right = 174.0
+offset_bottom = 534.0
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
