@@ -4,7 +4,7 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_yisc2")]
+[node name="Player" parent="." instance=ExtResource("1_yisc2")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 286.0
