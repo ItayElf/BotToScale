@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ov16dtgcf52t"]
+[gd_scene load_steps=5 format=3 uid="uid://ov16dtgcf52t"]
 
 [ext_resource type="Script" path="res://characters/player/Player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
@@ -6,8 +6,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o54q1"]
 size = Vector2(127, 129)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_felli"]
+size = Vector2(129, 127)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_44d34")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
 
 [node name="Roomba" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
@@ -24,8 +33,6 @@ offset_top = -96.5
 offset_right = 40.5
 offset_bottom = -73.5
 text = "ROOMBA"
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Blender" type="CollisionShape2D" parent="."]
 visible = false
@@ -44,6 +51,15 @@ offset_top = -96.5
 offset_right = 72.5
 offset_bottom = -73.5
 text = "BLENDER"
+
+[node name="AttackTrigger" type="Area2D" parent="Blender"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blender/AttackTrigger"]
+position = Vector2(71.5, 0.5)
+shape = SubResource("RectangleShape2D_felli")
+disabled = true
 
 [node name="Coffee" type="CollisionShape2D" parent="."]
 visible = false
@@ -98,3 +114,6 @@ offset_top = -96.5
 offset_right = 72.5
 offset_bottom = -73.5
 text = "FAN"
+
+[connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_attack_trigger_body_entered"]
+[connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_attack_trigger_body_exited"]
