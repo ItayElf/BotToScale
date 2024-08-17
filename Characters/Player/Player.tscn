@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o54q1"]
-size = Vector2(127, 129)
+[sub_resource type="CircleShape2D" id="CircleShape2D_25bww"]
+radius = 63.2179
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_44d34")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
-shape = SubResource("RectangleShape2D_o54q1")
+shape = SubResource("CircleShape2D_25bww")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
