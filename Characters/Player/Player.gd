@@ -1,4 +1,5 @@
-class_name Player extends CharacterBody2D
+class_name Player 
+extends CharacterBody2D
 
 # States for the player (UNASSIGNED is only used before start_state is assigned to current_state)
 enum State {ROOMBA, BLENDER, COFFEE, REFRIGERATOR, FAN, UNASSIGNED}
@@ -33,7 +34,7 @@ var acceleration : float
 var deceleration : float
 var current_state : State = State.UNASSIGNED
 var input : Vector2
-var blender_hitlist : Array
+var blender_hitlist : Array[Enemy]
 
 # These are colliders that hold everything that
 # a specific player state would need (sprite, timers, etc.)

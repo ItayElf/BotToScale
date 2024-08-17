@@ -13,11 +13,11 @@ func spawn_enemy():
 	var enemytype = -1
 	match enemytype:
 		1:
-			new_enemy = preload("res://Characters/Enemies/Enemy.tscn").instantiate()
+			new_enemy = preload("res://Characters/Enemies/enemy.tscn").instantiate()
 		2:
-			new_enemy = preload("res://Characters/Enemies/SlidingEnemy.tscn").instantiate()
+			new_enemy = preload("res://Characters/Enemies/sliding_enemy.tscn").instantiate()
 		_:
-			new_enemy = preload("res://Characters/Enemies/Enemy.tscn").instantiate()
+			new_enemy = preload("res://Characters/Enemies/enemy.tscn").instantiate()
 	path_follow.progress_ratio = randf()
 	new_enemy.global_position = path_follow.global_position
 	add_child(new_enemy)
