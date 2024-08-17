@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwo5gdwv3oyeh"]
+
+[ext_resource type="Script" path="res://Characters/Enemies/Enemy.gd" id="1_bvb45"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxj3v"]
+radius = 21.2132
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 0
+script = ExtResource("1_bvb45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lxj3v")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.592157, 0.545098, 0.917647, 1)
+polygon = PackedVector2Array(-12, -16, 12, -16, 12, 16, -12, 16)
