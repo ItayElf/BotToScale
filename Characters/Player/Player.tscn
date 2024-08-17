@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ov16dtgcf52t"]
+[gd_scene load_steps=6 format=3 uid="uid://ov16dtgcf52t"]
 
 [ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
@@ -9,33 +9,20 @@ size = Vector2(127, 129)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_felli"]
 size = Vector2(129, 127)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_en0uv"]
+size = Vector2(285, 214)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_44d34")
-roomba_speed = null
-roomba_acceleration = null
-roomba_deceleration = null
-blender_speed = null
-blender_acceleration = null
-blender_deceleration = null
-blender_damage_per_second = null
-coffee_speed = null
-coffee_acceleration = null
-coffee_deceleration = null
-refrigerator_speed = null
-refrigerator_acceleration = null
-refrigerator_deceleration = null
-fan_speed = null
-fan_acceleration = null
-fan_deceleration = null
-start_state = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Roomba" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_o54q1")
 disabled = true
@@ -132,5 +119,15 @@ offset_right = 72.5
 offset_bottom = -73.5
 text = "FAN"
 
-[connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_attack_trigger_body_entered"]
-[connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_attack_trigger_body_exited"]
+[node name="PushTrigger" type="Area2D" parent="Fan"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fan/PushTrigger"]
+position = Vector2(145, 0.5)
+shape = SubResource("RectangleShape2D_en0uv")
+disabled = true
+
+[connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_entered"]
+[connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_exited"]
+[connection signal="body_entered" from="Fan/PushTrigger" to="." method="_on_any_trigger_body_entered"]
+[connection signal="body_exited" from="Fan/PushTrigger" to="." method="_on_any_trigger_body_exited"]
