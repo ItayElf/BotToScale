@@ -6,5 +6,6 @@
 script = ExtResource("1_7vlvk")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
 
 [node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]
