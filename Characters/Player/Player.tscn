@@ -3,18 +3,98 @@
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_25bww"]
-radius = 55.1589
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o54q1"]
+size = Vector2(127, 129)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_44d34")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Roomba" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
-shape = SubResource("CircleShape2D_25bww")
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
+[node name="Sprite" type="Sprite2D" parent="Roomba"]
+position = Vector2(-0.5, -0.5)
 texture = ExtResource("2_g58rm")
 
+[node name="Label" type="Label" parent="Roomba"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 40.5
+offset_bottom = -73.5
+text = "ROOMBA"
+
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Blender" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Blender"]
+modulate = Color(1, 1, 0.156863, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Blender"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "BLENDER"
+
+[node name="Coffee" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Coffee"]
+modulate = Color(1, 0.577356, 0.031439, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Coffee"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "COFFE MACHINE"
+
+[node name="Refrigerator" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Refrigerator"]
+modulate = Color(0.0431373, 1, 1, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Refrigerator"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "REFRIGERATOR"
+
+[node name="Fan" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Fan"]
+modulate = Color(1, 0.294118, 0.627451, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Fan"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "FAN"
