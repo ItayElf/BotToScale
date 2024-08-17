@@ -28,7 +28,7 @@ func stop_music():
 	_last_played = null
 
 
-## This function plays sound effects. 
+##This function plays sound effects. 
 ## It lowers the volume of the background music, plays the sound effect and 
 ## then when the effect finishes it raises the volume to its original volume.
 ## You need to load the file using `preload` or `load` and then pass them to 
