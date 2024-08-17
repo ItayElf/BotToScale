@@ -19,6 +19,13 @@ config/icon="res://icon.svg"
 
 MusicController="*res://Sounds/music_controller.tscn"
 
+[file_customization]
+
+folder_colors={
+"res://Characters/": "orange",
+"res://Sounds/": "red"
+}
+
 [input]
 
 ui_left={
