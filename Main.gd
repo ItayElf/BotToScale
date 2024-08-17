@@ -10,7 +10,7 @@ func _process(delta):
 	pass
 func spawn_enemy():
 	var new_enemy = null
-	var enemytype = randi_range(1,2)
+	var enemytype = -1
 	match enemytype:
 		1:
 			new_enemy = preload("res://Characters/Enemies/Enemy.tscn").instantiate()

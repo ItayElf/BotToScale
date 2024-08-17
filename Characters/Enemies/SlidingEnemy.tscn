@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6l6rvw6xacjb"]
+[gd_scene load_steps=3 format=3 uid="uid://bafyatq0inxpl"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/SlidingEnemy.gd" id="1_664ww"]
 
@@ -9,6 +9,8 @@ radius = 21.2132
 collision_layer = 2
 platform_floor_layers = 0
 script = ExtResource("1_664ww")
+speed = 100.0
+acceleration = 300.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lxj3v")
