@@ -14,8 +14,6 @@ func spawn_enemy():
 	match enemytype:
 		1:
 			new_enemy = preload("res://Characters/Enemies/enemy.tscn").instantiate()
-		2:
-			new_enemy = preload("res://Characters/Enemies/sliding_enemy.tscn").instantiate()
 		_:
 			new_enemy = preload("res://Characters/Enemies/enemy.tscn").instantiate()
 	path_follow.progress_ratio = randf()

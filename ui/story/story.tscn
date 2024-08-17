@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfyuqc1nilwg7"]
+
+[ext_resource type="Script" path="res://ui/story/story.gd" id="1_d7wq3"]
+
+[node name="Story" type="Node2D"]
+script = ExtResource("1_d7wq3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 93.0
+offset_top = 467.0
+offset_right = 173.0
+offset_bottom = 617.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+visibility_layer = 0
+layout_mode = 2
+text = "Start"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+visibility_layer = 0
+layout_mode = 2
+text = "back"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 447.0
+offset_top = 127.0
+offset_right = 651.0
+offset_bottom = 188.0
+text = "Some very interesting lore"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 93.0
+offset_top = 502.0
+offset_right = 173.0
+offset_bottom = 533.0
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 93.0
+offset_top = 467.0
+offset_right = 173.0
+offset_bottom = 498.0
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
