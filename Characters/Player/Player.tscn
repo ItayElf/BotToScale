@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ov16dtgcf52t"]
+[gd_scene load_steps=5 format=3 uid="uid://ov16dtgcf52t"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25bww"]
-radius = 63.2179
+radius = 55.1589
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqjsn"]
+radius = 76.5016
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_44d34")
@@ -16,3 +19,11 @@ shape = SubResource("CircleShape2D_25bww")
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
 texture = ExtResource("2_g58rm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("CircleShape2D_tqjsn")
