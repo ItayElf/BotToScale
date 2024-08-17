@@ -12,6 +12,7 @@ enum State {ROOMBA, BLENDER, COFFEE, REFRIGERATOR, FAN, UNASSIGNED}
 @export var blender_speed: float = 300.0
 @export var blender_acceleration: float = 1300.0
 @export var blender_deceleration: float = 1500.0
+@export var blender_damage_per_second: float = 130.0
 @export_subgroup("Coffee")
 @export var coffee_speed: float = 300.0
 @export var coffee_acceleration: float = 1300.0
@@ -31,6 +32,8 @@ var speed : float
 var acceleration : float
 var deceleration : float
 var current_state : State = State.UNASSIGNED
+var input : Vector2
+var blender_hitlist : Array
 
 # These are colliders that hold everything that
 # a specific player state would need (sprite, timers, etc.)
@@ -47,7 +50,7 @@ func _ready():
 ## Sets the velocity from the user input
 func _change_velocity(delta):
 	# gets the input vector (horizontal_input, vertical_input)
-	var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	# change the size of this vector to 1 to limit the diagonal movement speed
 	input = input.normalized()
 	
@@ -58,6 +61,11 @@ func _change_velocity(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
 
 func _process(delta):
+	match current_state:
+		State.BLENDER:
+			blender_behaviour(delta)
+	
+	# REMOVE BEFORE FINAL BUILD
 	DEBUG_state_changer()
 
 func _physics_process(delta):
@@ -139,3 +147,49 @@ func change_state(state : State):
 			speed = fan_speed
 			acceleration = fan_acceleration
 			deceleration = fan_deceleration
+
+func add_health(amount: float):
+	print("healed by: " + str(amount))
+	pass # TODO: implement
+
+func _on_attack_trigger_body_entered(body):
+	if body.has_method("get_hit"):
+		blender_hitlist.append(body)
+
+
+
+func _on_attack_trigger_body_exited(body):
+	var id = blender_hitlist.find(body)
+	if id != -1:
+		blender_hitlist.remove_at(id)
+
+func blender_behaviour(delta):
+	if Input.is_action_pressed("ability"):
+		blender.get_node("AttackTrigger/CollisionShape2D").disabled = false
+				
+		var rotation_value : float
+		var direction_to_mouse = position.direction_to(get_global_mouse_position())
+				
+		#This allows us to determine whether the mouse is placed horizontally
+		# with the player or vertically to rotate the attack trigger
+		var dot_product = direction_to_mouse.dot(Vector2.UP)
+				
+		if dot_product * dot_product > 0.5:
+			if direction_to_mouse.y > 0:
+				rotation_value = 90.0
+			else:
+				rotation_value = -90.0
+		else:
+			if direction_to_mouse.x > 0:
+				rotation_value = 0.0
+			else:
+				rotation_value = 180.0
+					
+		blender.get_node("AttackTrigger").rotation_degrees = rotation_value
+				
+		# Deal damage to all enemies in the attack trrigger
+		for hit in blender_hitlist:
+			hit.get_hit(blender_damage_per_second * delta)
+	
+	if Input.is_action_just_released("ability"):
+		blender.get_node("AttackTrigger/CollisionShape2D").disabled = true
