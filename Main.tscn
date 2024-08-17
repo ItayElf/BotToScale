@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfa00n0ovgu4k"]
+[gd_scene load_steps=3 format=3 uid="uid://dfa00n0ovgu4k"]
 
 [ext_resource type="PackedScene" uid="uid://ov16dtgcf52t" path="res://Characters/Player/Player.tscn" id="1_yisc2"]
+[ext_resource type="PackedScene" uid="uid://dwo5gdwv3oyeh" path="res://Characters/Enemies/Enemy.tscn" id="3_try4l"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,3 +23,18 @@ offset_top = 10.0
 offset_right = 326.0
 offset_bottom = 50.0
 color = Color(0.696986, 0.318592, 0.494194, 1)
+
+[node name="Enemy1" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(-30, -7)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(75, -31)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(-62, 72)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(11, 100)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_try4l")]
+position = Vector2(75, 35)
