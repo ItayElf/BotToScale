@@ -15,21 +15,14 @@ script = ExtResource("1_mopii")
 [node name="Player" parent="." instance=ExtResource("1_yisc2")]
 roomba_speed = 600.0
 roomba_acceleration = 2000.0
-roomba_deceleration = 1500.0
 blender_speed = 450.0
 blender_acceleration = 1500.0
-blender_deceleration = 1500.0
-blender_damage_per_second = 130.0
 coffee_speed = 380.0
 coffee_acceleration = 1100.0
-coffee_deceleration = 1500.0
 refrigerator_speed = 320.0
-refrigerator_acceleration = 1300.0
-refrigerator_deceleration = 1500.0
 fan_speed = 250.0
 fan_acceleration = 500.0
 fan_deceleration = 1000.0
-start_state = 0
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_chj7t")

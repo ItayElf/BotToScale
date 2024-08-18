@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfa00n0ovgu4k"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_mopii"]
-[ext_resource type="PackedScene" uid="uid://ov16dtgcf52t" path="res://Characters/Player/player.tscn" id="1_yisc2"]
+[ext_resource type="PackedScene" uid="uid://ov16dtgcf52t" path="res://Characters/Player/Player.tscn" id="1_yisc2"]
 
 [sub_resource type="Curve2D" id="Curve2D_chj7t"]
 _data = {
@@ -15,21 +15,14 @@ script = ExtResource("1_mopii")
 [node name="Player" parent="." instance=ExtResource("1_yisc2")]
 roomba_speed = 600.0
 roomba_acceleration = 2000.0
-roomba_deceleration = 1500.0
 blender_speed = 450.0
 blender_acceleration = 1500.0
-blender_deceleration = 1500.0
-blender_damage_per_second = 130.0
 coffee_speed = 380.0
 coffee_acceleration = 1100.0
-coffee_deceleration = 1500.0
 refrigerator_speed = 320.0
-refrigerator_acceleration = 1300.0
-refrigerator_deceleration = 1500.0
 fan_speed = 250.0
 fan_acceleration = 500.0
 fan_deceleration = 1000.0
-start_state = 0
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_chj7t")

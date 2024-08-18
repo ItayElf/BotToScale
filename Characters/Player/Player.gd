@@ -1,3 +1,4 @@
+class_name Player 
 extends CharacterBody2D
 
 # States for the player (UNASSIGNED is only used before start_state is assigned to current_state)
@@ -152,6 +153,9 @@ func change_state(state : State):
 			acceleration = fan_acceleration
 			deceleration = fan_deceleration
 
+func add_health(amount: float):
+	print("healed by: " + str(amount))
+	pass # TODO: implement
 
 func _on_any_trigger_body_entered(body):
 	if body is Enemy:
@@ -224,9 +228,10 @@ func fan_behaviour(delta):
 					
 		fan.get_node("PushTrigger").rotation_degrees = rotation_value
 		
-		var acceleration = fan_push_max_speed / fan_push_time_to_max_velocity
+		var new_acceleration = fan_push_max_speed / fan_push_time_to_max_velocity
 		for hit in hitlist:
-			hit.velocity = hit.velocity.move_toward(looking_dir * fan_push_max_speed, acceleration * delta)
+			hit.velocity = hit.velocity.move_toward(looking_dir * fan_push_max_speed, 
+					new_acceleration * delta)
 	
 	if Input.is_action_just_released("ability"):
 		fan.get_node("PushTrigger/CollisionShape2D").disabled = true
