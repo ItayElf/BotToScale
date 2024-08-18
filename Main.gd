@@ -1,5 +1,5 @@
 extends Node2D
-@onready var path_follow = $Path2D/PathFollow2D
+@onready var path_follow = $Spawner/PathFollow2D
 
 func spawn_enemy():
 	var new_enemy = null

@@ -26,9 +26,7 @@ collision_layer = 2
 collision_mask = 7
 platform_floor_layers = 0
 script = ExtResource("1_nfahx")
-max_health = null
-speed = null
-acceleration = null
+acceleration = 900.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6ottm")
@@ -48,3 +46,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_w7sy4")
 max_value = 1.0
 value = 0.7
 show_percentage = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Navigation Resfresh" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Navigation Resfresh" to="." method="_on_navigation_resfresh_timeout"]
