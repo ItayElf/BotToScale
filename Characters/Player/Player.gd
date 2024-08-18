@@ -4,6 +4,14 @@ extends CharacterBody2D
 # States for the player (UNASSIGNED is only used before start_state is assigned to current_state)
 enum State {ROOMBA, BLENDER, COFFEE, REFRIGERATOR, FAN, UNASSIGNED}
 
+@export_group("Health")
+@export var max_health : float = 14
+@export var start_health = 1
+@export var blender_change_health = 3
+@export var coffee_change_health = 6
+@export var fridge_change_health = 9
+@export var fan_change_health = 12
+
 @export_group("State specific")
 @export_subgroup("Roomba")
 @export var roomba_speed: float = 300.0
@@ -14,6 +22,8 @@ enum State {ROOMBA, BLENDER, COFFEE, REFRIGERATOR, FAN, UNASSIGNED}
 @export var blender_acceleration: float = 1300.0
 @export var blender_deceleration: float = 1500.0
 @export var blender_damage_per_second: float = 130.0
+@export var blender_knockback_max_speed: float = 200.0
+@export var blender_knockback_time_to_max_velocity = 0.1
 @export_subgroup("Coffee")
 @export var coffee_speed: float = 300.0
 @export var coffee_acceleration: float = 1300.0
@@ -37,6 +47,7 @@ var deceleration : float
 var current_state : State = State.UNASSIGNED
 var input : Vector2
 var hitlist : Array[Enemy]
+var health
 
 # These are colliders that hold everything that
 # a specific player state would need (sprite, timers, etc.)
@@ -45,9 +56,11 @@ var hitlist : Array[Enemy]
 @onready var coffee = $Coffee #that's what i'm calling the coffee machine
 @onready var refrigerator = $Refrigerator
 @onready var fan = $Fan
-
+@onready var hud = $HUD
 
 func _ready():
+	health = start_health
+	hud.update_health_bar(health / max_health)
 	change_state(start_state)
 
 ## Sets the velocity from the user input
@@ -96,22 +109,22 @@ func change_state(state : State):
 	match current_state:
 		State.UNASSIGNED:
 			roomba.visible = false
-			roomba.disabled = true
+			roomba.set_deferred("disabled", true)
 		State.ROOMBA:
 			roomba.visible = false
-			roomba.disabled = true
+			roomba.set_deferred("disabled", true)
 		State.BLENDER:
 			blender.visible = false
-			blender.disabled = true
+			blender.set_deferred("disabled", true)
 		State.COFFEE:
 			coffee.visible = false
-			coffee.disabled = true
+			coffee.set_deferred("disabled", true)
 		State.REFRIGERATOR:
 			refrigerator.visible = false
-			refrigerator.disabled = true
+			refrigerator.set_deferred("disabled", true)
 		State.FAN:
 			fan.visible = false
-			fan.disabled = true
+			fan.set_deferred("disabled", true)
 	
 	current_state = state
 	
@@ -119,43 +132,73 @@ func change_state(state : State):
 	match current_state:
 		State.ROOMBA:
 			roomba.visible = true
-			roomba.disabled = false
+			roomba.set_deferred("disabled", false)
 			
 			speed = roomba_speed
 			acceleration = roomba_acceleration
 			deceleration = roomba_deceleration
 		State.BLENDER:
 			blender.visible = true
-			blender.disabled = false
+			blender.set_deferred("disabled", false)
 			
 			speed = blender_speed
 			acceleration = blender_acceleration
 			deceleration = blender_deceleration
 		State.COFFEE:
 			coffee.visible = true
-			coffee.disabled = false
+			coffee.set_deferred("disabled", false)
 			
 			speed = coffee_speed
 			acceleration = coffee_acceleration
 			deceleration = coffee_deceleration
 		State.REFRIGERATOR:
 			refrigerator.visible = true
-			refrigerator.disabled = false
+			refrigerator.set_deferred("disabled", false)
 			
 			speed = refrigerator_speed
 			acceleration = refrigerator_acceleration
 			deceleration = refrigerator_deceleration
 		State.FAN:
 			fan.visible = true
-			fan.disabled = false
+			fan.set_deferred("disabled", false)
 			
 			speed = fan_speed
 			acceleration = fan_acceleration
 			deceleration = fan_deceleration
 
 func add_health(amount: float):
-	print("healed by: " + str(amount))
-	pass # TODO: implement
+	if amount < 0:
+		health += amount
+		if health < 0:
+			die()
+		else:
+			check_for_state_change()
+	else:
+		health = min(max_health, health + amount)
+		check_for_state_change()
+	
+	hud.update_health_bar(health / max_health)
+
+func die():
+	queue_free()
+
+func check_for_state_change():
+	
+	if health >= 12:
+		if current_state != State.FAN:
+			change_state(State.FAN)
+	elif health >= 9:
+		if current_state != State.REFRIGERATOR:
+			change_state(State.REFRIGERATOR)
+	elif health >= 6:
+		if current_state != State.COFFEE:
+			change_state(State.COFFEE)
+	elif health >= 3:
+		if current_state != State.BLENDER:
+			change_state(State.BLENDER)
+	else:
+		if current_state != State.ROOMBA:
+			change_state(State.ROOMBA)
 
 func _on_any_trigger_body_entered(body):
 	if body is Enemy:
@@ -177,24 +220,33 @@ func blender_behaviour(delta):
 		#This allows us to determine whether the mouse is placed horizontally
 		# with the player or vertically to rotate the attack trigger
 		var dot_product = direction_to_mouse.dot(Vector2.UP)
-				
+		var looking_dir : Vector2
+			
 		if dot_product * dot_product > 0.5:
 			if direction_to_mouse.y > 0:
 				rotation_value = 90.0
+				looking_dir = Vector2.DOWN
 			else:
 				rotation_value = -90.0
+				looking_dir = Vector2.UP
 		else:
 			if direction_to_mouse.x > 0:
 				rotation_value = 0.0
+				looking_dir = Vector2.RIGHT
 			else:
 				rotation_value = 180.0
+				looking_dir = Vector2.LEFT
 					
 		blender.get_node("AttackTrigger").rotation_degrees = rotation_value
 				
 		# Deal damage to all enemies in the attack trrigger
 		for hit in hitlist:
+			
 			if hit.has_method("get_hit"):
 				hit.get_hit(blender_damage_per_second * delta)
+				var new_acceleration = blender_knockback_max_speed / blender_knockback_time_to_max_velocity
+				var final_vel = looking_dir * blender_knockback_max_speed * hit.knockback_multiplier
+				hit.velocity = hit.velocity.move_toward(final_vel, new_acceleration * delta)
 	
 	if Input.is_action_just_released("ability"):
 		blender.get_node("AttackTrigger/CollisionShape2D").disabled = true
@@ -230,7 +282,8 @@ func fan_behaviour(delta):
 		
 		var new_acceleration = fan_push_max_speed / fan_push_time_to_max_velocity
 		for hit in hitlist:
-			hit.velocity = hit.velocity.move_toward(looking_dir * fan_push_max_speed, 
+			var final_vel = looking_dir * fan_push_max_speed * hit.knockback_multiplier
+			hit.velocity = hit.velocity.move_toward(final_vel, 
 					new_acceleration * delta)
 	
 	if Input.is_action_just_released("ability"):

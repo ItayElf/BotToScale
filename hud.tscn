@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://0cbot3g0xn1b"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_ds1ti"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rfbt"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qb6jc"]
+bg_color = Color(0.420918, 0.956153, 0.883453, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ds1ti")
+
+[node name="Health" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -419.0
+offset_top = -129.0
+offset_right = 419.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Intel i5 8th gen processor un-fuck-uper" type="Label" parent="Health"]
+modulate = Color(1, 1, 1, 0.027451)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "-"
+
+[node name="HealthBar" type="ProgressBar" parent="Health"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -18.0
+offset_right = 296.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_2rfbt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qb6jc")
+max_value = 1.0
+value = 0.36
+show_percentage = false

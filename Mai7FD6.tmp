@@ -29,7 +29,7 @@ navigation_polygon = SubResource("NavigationPolygon_r1w6f")
 
 [node name="Player" parent="." instance=ExtResource("1_yisc2")]
 position = Vector2(271, 127)
-roomba_speed = 650.0
+roomba_speed = 600.0
 roomba_acceleration = 2000.0
 blender_speed = 450.0
 blender_acceleration = 1500.0

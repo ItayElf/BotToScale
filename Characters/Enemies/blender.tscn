@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bccqxb65ui01a"]
+
+[ext_resource type="PackedScene" uid="uid://btes4066pdf3v" path="res://Characters/Enemies/enemy.tscn" id="1_dvu32"]
+[ext_resource type="Script" path="res://Characters/Enemies/blender.gd" id="2_tnfog"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igh2q"]
+size = Vector2(140, 142)
+
+[node name="Blender" instance=ExtResource("1_dvu32")]
+script = ExtResource("2_tnfog")
+damage = 1
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(1, 0.514052, 0.551395, 1)
+
+[node name="AttackTrigger" type="Area2D" parent="." index="5"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackTrigger" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_igh2q")
+
+[node name="Attack Cooldown" type="Timer" parent="." index="6"]
+one_shot = true
+
+[connection signal="body_entered" from="AttackTrigger" to="." method="_on_attack_trigger_body_entered"]
+[connection signal="body_exited" from="AttackTrigger" to="." method="_on_attack_trigger_body_exited"]
+[connection signal="timeout" from="Attack Cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -3,12 +3,14 @@ extends Node2D
 
 func spawn_enemy():
 	var new_enemy = null
-	var enemytype = -1
+	var enemytype = randi_range(0, 2)
 	match enemytype:
+		0:
+			new_enemy = preload("res://Objects/Collectibles/collectible.tscn").instantiate()
 		1:
-			new_enemy = preload("res://Characters/Enemies/enemy.tscn").instantiate()
-		_:
-			new_enemy = preload("res://Characters/Enemies/enemy.tscn").instantiate()
+			new_enemy = preload("res://Characters/Enemies/roomba.tscn").instantiate()
+		2:
+			new_enemy = preload("res://Characters/Enemies/blender.tscn").instantiate()
 	path_follow.progress_ratio = randf()
 	new_enemy.global_position = path_follow.global_position
 	add_child(new_enemy)
