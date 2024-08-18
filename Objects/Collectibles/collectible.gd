@@ -7,10 +7,12 @@ extends Area2D
 @onready var _collision: CollisionShape2D = $CollisionShape2D
 
 func _ready():
-	_sprite.frame = randi_range(0, _sprite.hframes)
+	_sprite.frame = randi_range(0, _sprite.hframes-1)
 
 
 func _on_body_entered(body):
-	var player: Player = body
-	player.add_health(heal_amount)
+	if body is Player:
+		body.add_health(heal_amount)
+	elif body is Roomba:
+		body.collect_part()
 	queue_free()

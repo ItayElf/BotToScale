@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbk4nn7l420rg"]
+
+[ext_resource type="PackedScene" uid="uid://btes4066pdf3v" path="res://Characters/Enemies/enemy.tscn" id="1_f7kcy"]
+[ext_resource type="Script" path="res://Characters/Enemies/roomba.gd" id="2_qs4df"]
+
+[node name="Roomba" instance=ExtResource("1_f7kcy")]
+script = ExtResource("2_qs4df")
+search_delay = 1.0
+knockback_multiplier = 1.3
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.347875, 0.297657, 1, 1)
+
+[node name="Target Refresh" type="Timer" parent="." index="5"]
+wait_time = 0.2
+autostart = true
+
+[node name="Wait For Parts" type="Timer" parent="." index="6"]
+wait_time = 0.3
+
+[connection signal="timeout" from="Target Refresh" to="." method="_on_target_refresh_timeout"]
+[connection signal="timeout" from="Wait For Parts" to="." method="_on_wait_for_parts_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ov16dtgcf52t"]
+[gd_scene load_steps=7 format=3 uid="uid://ov16dtgcf52t"]
 
 [ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
+[ext_resource type="PackedScene" uid="uid://0cbot3g0xn1b" path="res://hud.tscn" id="3_rgyg6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o54q1"]
 size = Vector2(127, 129)
@@ -22,7 +23,6 @@ zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Roomba" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_o54q1")
 disabled = true
@@ -126,6 +126,8 @@ collision_mask = 2
 position = Vector2(145, 0.5)
 shape = SubResource("RectangleShape2D_en0uv")
 disabled = true
+
+[node name="HUD" parent="." instance=ExtResource("3_rgyg6")]
 
 [connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_entered"]
 [connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_exited"]
