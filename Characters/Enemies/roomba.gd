@@ -69,6 +69,7 @@ func look_for_another():
 
 func collect_part():
 	parts_collected += 1
+	MusicController.p_metallic()
 	look_for_another()
 
 func get_hit(dmg):

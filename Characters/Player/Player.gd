@@ -40,6 +40,9 @@ enum State {ROOMBA, BLENDER, COFFEE, REFRIGERATOR, FAN, UNASSIGNED}
 @export var fan_push_max_speed : float = 1000.0
 @export_group("Switching states")
 @export var start_state : State = State.ROOMBA
+@export_group("Sounds")
+@export var footstep_timer_speed_multiplier = 0.005
+
 
 var speed : float
 var acceleration : float
@@ -48,6 +51,8 @@ var current_state : State = State.UNASSIGNED
 var input : Vector2
 var hitlist : Array[Enemy]
 var health
+var can_attack := true
+var can_turn := true
 
 # These are colliders that hold everything that
 # a specific player state would need (sprite, timers, etc.)
@@ -60,6 +65,8 @@ var health
 @onready var hud = $HUD
 @onready var animator = $"Sprite Animator"
 @onready var animation_tree : AnimationTree = $AnimationTree
+@onready var attack_finish_timer = $Refrigerator/AttackFinish
+@onready var attack_cooldown_timer = $Refrigerator/AttackCooldown
 
 func _ready():
 	health = start_health
@@ -68,11 +75,15 @@ func _ready():
 
 ## Sets the velocity from the user input
 func _change_velocity(delta):
+	var last_inp = input
+	
 	# gets the input vector (horizontal_input, vertical_input)
 	input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	# change the size of this vector to 1 to limit the diagonal movement speed
 	input = input.normalized()
 	
+	if last_inp == Vector2.ZERO and input != Vector2.ZERO:
+		$FootstepTimer.start(1/speed * footstep_timer_speed_multiplier)
 	# if you press any keys you accelerate until reaching the max speed 
 	if input:
 		velocity = velocity.move_toward(input * speed, acceleration * delta)
@@ -80,6 +91,7 @@ func _change_velocity(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
 
 func _process(delta):
+	
 	match current_state:
 		State.BLENDER:
 			blender_behaviour(delta)
@@ -90,6 +102,12 @@ func _process(delta):
 	
 	# REMOVE BEFORE FINAL BUILD
 	DEBUG_state_changer()
+
+func play_footstep():
+	if current_state == State.REFRIGERATOR:
+		MusicController.p_fridge_footstep()
+	elif current_state == State.BLENDER or State.COFFEE:
+		MusicController.p_metal_footstep()
 
 func _physics_process(delta):
 	_change_velocity(delta)
@@ -109,14 +127,24 @@ func DEBUG_state_changer():
 		change_state(State.FAN)
 
 func update_animator():
-	var right_state = current_state == State.BLENDER
-	if Input.is_action_pressed("ability") and right_state:
+	if not can_turn: return
+	var right_state = current_state == State.BLENDER or current_state == State.REFRIGERATOR
+	if Input.is_action_pressed("ability") and right_state and can_attack:
 		var direction_to_mouse = position.direction_to(get_global_mouse_position())
 		animation_tree.set("parameters/Idle/blend_position", direction_to_mouse)
 		animation_tree.set("parameters/Move/blend_position", direction_to_mouse)
+		animation_tree.set("parameters/Ability/blend_position", direction_to_mouse)
 		var should_flip = $Roomba/Sprite.flip_h and direction_to_mouse.x > 0 or not $Roomba/Sprite.flip_h and direction_to_mouse.x < 0
 		if should_flip:
 			flip_sprites()
+		
+		if Input.is_action_just_pressed("ability"):
+			can_turn = false
+			can_attack = false
+			attack_finish_timer.start()
+			attack_cooldown_timer.start()
+			animation_tree.set("parameters/conditions/is_attacking", true)
+		
 		
 	if input:	
 		animation_tree.set("parameters/conditions/is_idle", false)
@@ -140,6 +168,13 @@ func flip_sprites():
 	$Refrigerator/Sprite.flip_h = opposite
 	$Fan/Sprite.flip_h = opposite
 
+func reset_sprite_flips():
+	$Roomba/Sprite.flip_h = false
+	$Blender/Sprite.flip_h = false
+	$Coffee/Sprite.flip_h = false
+	$Refrigerator/Sprite.flip_h = false
+	$Fan/Sprite.flip_h = false
+
 func change_state(state : State):
 	
 	# Disable the last state
@@ -153,6 +188,7 @@ func change_state(state : State):
 		State.BLENDER:
 			blender.visible = false
 			blender.set_deferred("disabled", true)
+			MusicController.s_loop_blender()
 		State.COFFEE:
 			coffee.visible = false
 			coffee.set_deferred("disabled", true)
@@ -206,12 +242,15 @@ func change_state(state : State):
 func add_health(amount: float):
 	if amount < 0:
 		health += amount
+		MusicController.p_hit()
 		if health < 0:
 			die()
+			MusicController.p_game_over()
 		else:
 			check_for_state_change()
 	else:
 		health = min(max_health, health + amount)
+		MusicController.p_pickup()
 		check_for_state_change()
 	
 	hud.update_health_bar(health / max_health)
@@ -223,18 +262,35 @@ func check_for_state_change():
 	
 	if health >= 12:
 		if current_state != State.FAN:
+			if current_state < State.FAN:
+				MusicController.p_transition_up()
+			else:
+				MusicController.p_transition_down()
 			change_state(State.FAN)
 	elif health >= 9:
 		if current_state != State.REFRIGERATOR:
+			if current_state < State.REFRIGERATOR:
+				MusicController.p_transition_up()
+			else:
+				MusicController.p_transition_down()
 			change_state(State.REFRIGERATOR)
 	elif health >= 6:
 		if current_state != State.COFFEE:
+			if current_state < State.COFFEE:
+				MusicController.p_transition_up()
+			else:
+				MusicController.p_transition_down()
 			change_state(State.COFFEE)
 	elif health >= 3:
 		if current_state != State.BLENDER:
+			if current_state < State.BLENDER:
+				MusicController.p_transition_up()
+			else:
+				MusicController.p_transition_down()
 			change_state(State.BLENDER)
 	else:
 		if current_state != State.ROOMBA:
+			MusicController.p_transition_down()
 			change_state(State.ROOMBA)
 
 func _on_any_trigger_body_entered(body):
@@ -248,6 +304,9 @@ func _on_any_trigger_body_exited(body):
 			hitlist.remove_at(id)
 
 func blender_behaviour(delta):
+	if Input.is_action_just_pressed("ability"):
+		MusicController.p_loop_blender()
+	
 	if Input.is_action_pressed("ability"):
 		blender.get_node("AttackTrigger/CollisionShape2D").disabled = false
 				
@@ -287,6 +346,7 @@ func blender_behaviour(delta):
 	
 	if Input.is_action_just_released("ability"):
 		blender.get_node("AttackTrigger/CollisionShape2D").disabled = true
+		MusicController.s_loop_blender()
 
 func fan_behaviour(delta):
 	if Input.is_action_pressed("ability"):
@@ -325,3 +385,22 @@ func fan_behaviour(delta):
 	
 	if Input.is_action_just_released("ability"):
 		fan.get_node("PushTrigger/CollisionShape2D").disabled = true
+
+
+func _on_attack_cooldown_timeout():
+	can_attack = true
+
+
+func _on_attack_finish_timeout():
+	can_turn = true
+	animation_tree["parameters/playback"].travel("Idle")
+	animation_tree.set("parameters/conditions/is_attacking", false)
+	
+
+
+func _on_footstep_timer_timeout():
+	if input != Vector2.ZERO:
+		play_footstep()
+		print("here")
+	else:
+		$FootstepTimer.stop()
