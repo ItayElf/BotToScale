@@ -11,6 +11,7 @@ var current_target
 var player
 var health:
 	set = set_health
+var input : Vector2 # used for the animation_tree
 
 @onready var health_bar : ProgressBar = $"Health Bar"
 @onready var navigation : NavigationAgent2D = $NavigationAgent2D
@@ -35,6 +36,7 @@ func _physics_process(delta):
 		if not navigation.is_navigation_finished():
 			var direction = global_position.direction_to(navigation.get_next_path_position())
 			velocity = velocity.move_toward(direction * speed, acceleration * delta)
+			input = direction
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)
 	move_and_slide()

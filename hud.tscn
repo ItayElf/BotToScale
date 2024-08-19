@@ -34,10 +34,12 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Intel i5 8th gen processor un-fuck-uper" type="Label" parent="Health"]
-modulate = Color(1, 1, 1, 0.027451)
+modulate = Color(1, 1, 1, 0.0705882)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 180.0
+offset_top = 15.0
+offset_right = 220.0
+offset_bottom = 38.0
 text = "-"
 
 [node name="HealthBar" type="ProgressBar" parent="Health"]
@@ -47,10 +49,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -296.0
-offset_top = -18.0
-offset_right = 296.0
-offset_bottom = 26.0
+offset_left = -142.0
+offset_top = -2.0
+offset_right = 142.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_2rfbt")
