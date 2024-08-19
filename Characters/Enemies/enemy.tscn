@@ -36,10 +36,10 @@ shape = SubResource("RectangleShape2D_6ottm")
 texture = ExtResource("2_ox4c4")
 
 [node name="Health Bar" type="ProgressBar" parent="."]
-offset_left = -68.0
-offset_top = -88.0
-offset_right = 72.0
-offset_bottom = -71.0
+offset_left = -21.0
+offset_top = -17.0
+offset_right = 119.0
+scale = Vector2(0.3, 0.3)
 theme_override_styles/background = SubResource("StyleBoxFlat_dwxhv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_w7sy4")
 max_value = 1.0

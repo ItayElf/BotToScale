@@ -1,4 +1,4 @@
-class_name Player 
+class_name Player
 extends CharacterBody2D
 
 # States for the player (UNASSIGNED is only used before start_state is assigned to current_state)
@@ -56,7 +56,10 @@ var health
 @onready var coffee = $Coffee #that's what i'm calling the coffee machine
 @onready var refrigerator = $Refrigerator
 @onready var fan = $Fan
+
 @onready var hud = $HUD
+@onready var animator = $"Sprite Animator"
+@onready var animation_tree : AnimationTree = $AnimationTree
 
 func _ready():
 	health = start_health
@@ -82,7 +85,9 @@ func _process(delta):
 			blender_behaviour(delta)
 		State.FAN:
 			fan_behaviour(delta)
-			
+	
+	update_animator()
+	
 	# REMOVE BEFORE FINAL BUILD
 	DEBUG_state_changer()
 
@@ -102,6 +107,38 @@ func DEBUG_state_changer():
 		change_state(State.REFRIGERATOR)
 	elif Input.is_action_just_pressed("fan"):
 		change_state(State.FAN)
+
+func update_animator():
+	var right_state = current_state == State.BLENDER
+	if Input.is_action_pressed("ability") and right_state:
+		var direction_to_mouse = position.direction_to(get_global_mouse_position())
+		animation_tree.set("parameters/Idle/blend_position", direction_to_mouse)
+		animation_tree.set("parameters/Move/blend_position", direction_to_mouse)
+		var should_flip = $Roomba/Sprite.flip_h and direction_to_mouse.x > 0 or not $Roomba/Sprite.flip_h and direction_to_mouse.x < 0
+		if should_flip:
+			flip_sprites()
+		
+	if input:	
+		animation_tree.set("parameters/conditions/is_idle", false)
+		animation_tree.set("parameters/conditions/is_moving", true)
+		animation_tree.set("parameters/Idle/blend_position", input)
+		animation_tree.set("parameters/Move/blend_position", input)
+		
+		var is_attacking = Input.is_action_pressed("ability") and right_state
+		var should_flip = $Roomba/Sprite.flip_h and input.x > 0 or not $Roomba/Sprite.flip_h and input.x < 0
+		if should_flip and not is_attacking:
+			flip_sprites()
+	else:
+		animation_tree.set("parameters/conditions/is_idle", true)
+		animation_tree.set("parameters/conditions/is_moving", false)
+
+func flip_sprites():
+	var opposite = not $Roomba/Sprite.flip_h
+	$Roomba/Sprite.flip_h = opposite
+	$Blender/Sprite.flip_h = opposite
+	$Coffee/Sprite.flip_h = opposite
+	$Refrigerator/Sprite.flip_h = opposite
+	$Fan/Sprite.flip_h = opposite
 
 func change_state(state : State):
 	

@@ -3,11 +3,12 @@ extends Enemy
 
 @export var search_delay = 1.0
 
-var parts_collected = 0
-var is_looking = false
+var parts_collected := 0
+var is_looking := false
 
 @onready var wait_for_parts_timer = $"Wait For Parts"
 @onready var collectible = preload("res://Objects/Collectibles/collectible.tscn")
+@onready var animation_tree = $AnimationTree
 
 func _ready():
 	enemy_init()
@@ -16,6 +17,24 @@ func _ready():
 		is_looking = true
 	else:
 		wait_for_parts_timer.start()
+
+func _process(delta):
+	if current_target != null:	
+		animation_tree.set("parameters/conditions/is_idle", false)
+		animation_tree.set("parameters/conditions/is_moving", true)
+		animation_tree.set("parameters/Idle/blend_position", input)
+		animation_tree.set("parameters/Move/blend_position", input)
+		
+		if $Roomba/Sprite.flip_h and input.x > 0 or not $Roomba/Sprite.flip_h and input.x < 0:
+			var opposite = not $Roomba/Sprite.flip_h
+			$Roomba/Sprite.flip_h = opposite
+			$Blender/Sprite.flip_h = opposite
+			$Coffee/Sprite.flip_h = opposite
+			$Refrigerator/Sprite.flip_h = opposite
+			$Fan/Sprite.flip_h = opposite
+	else:
+		animation_tree.set("parameters/conditions/is_idle", true)
+		animation_tree.set("parameters/conditions/is_moving", false)
 
 func find_closest_part():
 	
