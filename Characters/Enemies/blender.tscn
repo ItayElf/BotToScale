@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://btes4066pdf3v" path="res://Characters/Enemies/enemy.tscn" id="1_dvu32"]
 [ext_resource type="Script" path="res://Characters/Enemies/blender.gd" id="2_tnfog"]
 [ext_resource type="Texture2D" uid="uid://klowcqb8c8de" path="res://Characters/Player/roomba-Sheet.png" id="3_rn0ap"]
-[ext_resource type="Texture2D" uid="uid://s7qna3fmpdir" path="res://Characters/Player/blender-Sheet.png" id="4_fd65t"]
+[ext_resource type="Texture2D" uid="uid://cwug5hlmjrxj1" path="res://Characters/Enemies/blender-Sheet enemy.png" id="4_we7j4"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="5_bljlj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igh2q"]
@@ -381,7 +381,7 @@ shape = SubResource("RectangleShape2D_edo2r")
 
 [node name="Sprite" type="Sprite2D" parent="Blender" index="0"]
 position = Vector2(0, -5)
-texture = ExtResource("4_fd65t")
+texture = ExtResource("4_we7j4")
 hframes = 3
 vframes = 4
 frame = 2

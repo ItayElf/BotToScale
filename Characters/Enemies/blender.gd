@@ -32,19 +32,19 @@ func _on_attack_trigger_body_entered(body):
 	
 	is_player_here = true
 	
-	player.add_health(-damage)
-	
-	can_attack = false
-	cooldown_timer.start()
+	attack()
 
 func _on_attack_trigger_body_exited(body):
 	is_player_here = false
 
-
+func attack():
+	player.add_health(-damage)
+	can_attack = false
+	cooldown_timer.start()
+	MusicController.p_attack_slice()
 
 func _on_attack_cooldown_timeout():
 	if is_player_here:
-		player.add_health(-damage)
-		cooldown_timer.start()
+		attack()
 	else:
 		can_attack = true

@@ -43,6 +43,7 @@ func _physics_process(delta):
 
 func get_hit(dmg):
 	health -= dmg
+	MusicController.p_hit()
 	if health <= 0:
 		queue_free()
 

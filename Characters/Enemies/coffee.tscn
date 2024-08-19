@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://jbmp25nsjqf2"]
+
+[ext_resource type="PackedScene" uid="uid://btes4066pdf3v" path="res://Characters/Enemies/enemy.tscn" id="1_iax8p"]
+
+[node name="Coffee" instance=ExtResource("1_iax8p")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+visible = false
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
