@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MusicController="*res://sounds/music_controller.tscn"
 GlobalHighScore="*res://GlobalHighScore.gd"
+MusicController="*res://Sounds/music_controller.tscn"
 
 [display]
 

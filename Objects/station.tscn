@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cry1nkisotgdf"]
+[gd_scene load_steps=6 format=3 uid="uid://bwhgqmer6lwol"]
 
 [ext_resource type="Script" path="res://Objects/station.gd" id="1_3bi08"]
 [ext_resource type="Texture2D" uid="uid://cdut6s5nbddxd" path="res://Objects/bluetooth station.png" id="1_jqglj"]
