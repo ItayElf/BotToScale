@@ -204,17 +204,6 @@ func reset_sprite_flips():
 	$Refrigerator/AttackTrigger.scale.y = 1
 	$Refrigerator/AttackTrigger.rotation_degrees = 0.0
 
-
-
-func A_update(percentage):
-	hud.update_station_a(percentage)
-
-func B_update(percentage):
-	hud.update_station_b(percentage)
-
-
-
-
 func change_state(state : State):
 	
 	# Disable the last state
@@ -477,7 +466,6 @@ func coffee_behaviour(delta):
 		instance.global_position = global_position
 		instance.initialize(true, coffee_projectile_speed, direction_to_mouse, coffee_projectile_damage)
 		MusicController.p_projectile()
-		MusicController.p_coffee_fill()
 	
 
 func _on_attack_cooldown_timeout():
@@ -523,9 +511,6 @@ func _on_freeze_trigger_body_exited(body):
 func _on_suck_area_body_entered(body):
 	if body is Roomba and body.parts_collected > 0:
 		body.take_away_parts()
-
-
-func _on_suck_area_area_entered(area):
-	if area is Collectible:
-		add_health(area.heal_amount)
-		area.queue_free()
+	elif body is Collectible:
+		add_health(body.heal_amount)
+		body.queue_free()

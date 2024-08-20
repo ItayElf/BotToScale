@@ -87,6 +87,3 @@ func p_loop_roomba_move():
 	$_LoopRoombaMove.play()
 func s_loop_roomba_move():
 	$_LoopRoombaMove.stop()
-
-func p_coffee_fill():
-	$CoffeeFill.play()
