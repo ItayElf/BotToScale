@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dfa00n0ovgu4k"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_mopii"]
-[ext_resource type="PackedScene" uid="uid://ov16dtgcf52t" path="res://Characters/Player/player.tscn" id="1_yisc2"]
+[ext_resource type="PackedScene" uid="uid://ov16dtgcf52t" path="res://Characters/Player/Player.tscn" id="1_yisc2"]
 [ext_resource type="Texture2D" uid="uid://blo1cvmrht45s" path="res://Objects/tiles.png" id="2_iacnb"]
 [ext_resource type="PackedScene" uid="uid://rbtiyuejsqvb" path="res://Objects/Collectibles/collectible.tscn" id="3_6d70m"]
-[ext_resource type="PackedScene" path="res://Objects/station.tscn" id="5_41xq2"]
+[ext_resource type="PackedScene" uid="uid://cry1nkisotgdf" path="res://Objects/station.tscn" id="5_41xq2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jg7m2"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
