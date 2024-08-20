@@ -111,7 +111,8 @@ func play_footstep():
 
 func _physics_process(delta):
 	_change_velocity(delta)
-		
+	
+	
 	move_and_slide()
 
 func DEBUG_state_changer():
