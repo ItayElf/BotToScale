@@ -827,6 +827,9 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1arbr")
+}
 tree_root = SubResource("AnimationNodeStateMachine_bphao")
 anim_player = NodePath("../Sprite Animator")
 parameters/conditions/is_attacking = false
