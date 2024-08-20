@@ -1,3 +1,4 @@
+class_name Collectible
 extends Area2D
 
 @export var sprites: Array[Resource] = []
@@ -13,6 +14,8 @@ func _ready():
 func _on_body_entered(body):
 	if body is Player:
 		body.add_health(heal_amount)
+		queue_free()
 	elif body is Roomba:
 		body.collect_part()
-	queue_free()
+		queue_free()
+	

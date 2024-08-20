@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="5_bljlj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igh2q"]
-size = Vector2(16, 24)
+size = Vector2(15, 23)
 
 [sub_resource type="Animation" id="Animation_we4x3"]
 resource_name = "DownIdle"
@@ -326,6 +326,7 @@ script = ExtResource("2_tnfog")
 damage = 1
 speed = 100.0
 acceleration = 500.0
+collectible_drop_chance = 0.128
 
 [node name="CollisionShape2D" parent="." index="0"]
 visible = false
@@ -343,7 +344,7 @@ offset_bottom = -4.0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackTrigger" index="0"]
-position = Vector2(0, -4)
+position = Vector2(-0.5, -3.5)
 shape = SubResource("RectangleShape2D_igh2q")
 
 [node name="Attack Cooldown" type="Timer" parent="." index="6"]

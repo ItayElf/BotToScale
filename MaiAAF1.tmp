@@ -177,6 +177,7 @@ layer_0/tile_data = PackedInt32Array(-2687030, 0, 2, -2621494, 0, 2, -2555958, 0
 
 [node name="Player" parent="." instance=ExtResource("1_yisc2")]
 position = Vector2(191, 12)
+fan_push_time_to_max_velocity = 0.2
 
 [node name="Spawner" type="Path2D" parent="."]
 curve = SubResource("Curve2D_chj7t")

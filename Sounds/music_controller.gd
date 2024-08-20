@@ -64,6 +64,12 @@ func p_transition_up():
 func p_attack_slice():
 	$AttackSlice.play()
 
+func p_projectile():
+	$Projectile.play()
+
+func p_menu_click():
+	$MenuClick.play()
+
 func p_metallic():
 	$Metallic.play()
 
@@ -76,3 +82,8 @@ func p_loop_robot_suck():
 	$_LoopRobotSuck.play()
 func s_loop_robot_suck():
 	$_LoopRobotSuck.stop()
+
+func p_loop_roomba_move():
+	$_LoopRoombaMove.play()
+func s_loop_roomba_move():
+	$_LoopRoombaMove.stop()

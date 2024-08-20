@@ -7,7 +7,6 @@ var parts_collected := 0
 var is_looking := false
 
 @onready var wait_for_parts_timer = $"Wait For Parts"
-@onready var collectible = preload("res://Objects/Collectibles/collectible.tscn")
 @onready var animation_tree = $AnimationTree
 
 func _ready():
@@ -70,7 +69,13 @@ func look_for_another():
 func collect_part():
 	parts_collected += 1
 	MusicController.p_metallic()
+	$Sprite2D.visible = true
 	look_for_another()
+
+func take_away_parts():
+	player.add_health(parts_collected)
+	parts_collected = 0
+	$Sprite2D.visible = false
 
 func get_hit(dmg):
 	super.get_hit(dmg)
