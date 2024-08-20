@@ -76,6 +76,7 @@ var fridge_counter = 0
 @onready var attack_cooldown_timer = $Refrigerator/AttackCooldown
 @onready var coffee_cooldown_timer = $Coffee/CoffeeCooldown
 @onready var coffee_projectile = preload("res://Objects/coffee_projectile.tscn")
+@onready var camera_animator = $CameraAnimator
 
 func _ready():
 	health = start_health
@@ -232,6 +233,7 @@ func change_state(state : State):
 			fan.visible = false
 			fan.set_deferred("disabled", true)
 	
+	var last_state = current_state
 	current_state = state
 	
 	# Enable the new state and change the appropriate stats
@@ -244,6 +246,9 @@ func change_state(state : State):
 			acceleration = roomba_acceleration
 			deceleration = roomba_deceleration
 			
+			if last_state >= State.COFFEE:
+				camera_animator.play("Zoom_in")
+			
 			if input != Vector2.ZERO:
 				MusicController.p_loop_roomba_move()
 		State.BLENDER:
@@ -253,6 +258,9 @@ func change_state(state : State):
 			speed = blender_speed
 			acceleration = blender_acceleration
 			deceleration = blender_deceleration
+			
+			if last_state > current_state:
+				camera_animator.play("Zoom_in")
 		State.COFFEE:
 			coffee.visible = true
 			coffee.set_deferred("disabled", false)
@@ -260,6 +268,9 @@ func change_state(state : State):
 			speed = coffee_speed
 			acceleration = coffee_acceleration
 			deceleration = coffee_deceleration
+			
+			if last_state < current_state:
+				camera_animator.play("Zoom_out")
 		State.REFRIGERATOR:
 			refrigerator.visible = true
 			refrigerator.set_deferred("disabled", false)
@@ -270,6 +281,9 @@ func change_state(state : State):
 			
 			$Refrigerator/AttackTrigger.monitoring = true
 			$Refrigerator/FreezeTrigger.monitoring = true
+			
+			if last_state <= State.BLENDER:
+				camera_animator.play("Zoom_out")
 		State.FAN:
 			fan.visible = true
 			fan.set_deferred("disabled", false)

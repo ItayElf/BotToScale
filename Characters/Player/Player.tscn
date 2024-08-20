@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ov16dtgcf52t"]
+[gd_scene load_steps=57 format=3 uid="uid://ov16dtgcf52t"]
 
 [ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
@@ -579,6 +579,92 @@ _data = {
 "UpMove": SubResource("Animation_b38xw")
 }
 
+[sub_resource type="Animation" id="Animation_34723"]
+resource_name = "Zoomed_In"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_1tdel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_7s155"]
+resource_name = "Zoomed_out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w7fg3"]
+resource_name = "Zoom_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_86vnb"]
+resource_name = "Zoom_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2y0qd"]
+_data = {
+"RESET": SubResource("Animation_1tdel"),
+"Zoom_in": SubResource("Animation_w7fg3"),
+"Zoom_out": SubResource("Animation_86vnb"),
+"Zoomed_In": SubResource("Animation_34723"),
+"Zoomed_out": SubResource("Animation_7s155")
+}
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ok88"]
 animation = &"UpAttack"
 
@@ -721,10 +807,12 @@ roomba_speed = 180.0
 blender_speed = 150.0
 blender_knockback_max_speed = 100.0
 coffee_speed = 130.0
+coffee_acceleration = 1100.0
 coffee_projectile_speed = 500.0
-refrigerator_speed = 85.0
+refrigerator_speed = 75.0
+refrigerator_acceleration = 1000.0
 refrigerator_damage = 100.0
-refrigerator_slow_multiplier = 0.35
+refrigerator_slow_multiplier = 0.45
 start_state = 3
 footstep_timer_speed_multiplier = 60.0
 
@@ -732,6 +820,12 @@ footstep_timer_speed_multiplier = 60.0
 libraries = {
 "": SubResource("AnimationLibrary_1arbr")
 }
+
+[node name="CameraAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2y0qd")
+}
+autoplay = "Zoomed_In"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_bphao")
