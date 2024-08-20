@@ -8,6 +8,23 @@
 [ext_resource type="Texture2D" uid="uid://cxsrnjt4cou8b" path="res://Characters/Player/coffee machine-Sheet.png" id="4_3ncvm"]
 [ext_resource type="Texture2D" uid="uid://c5tir4bb5otik" path="res://Characters/Player/fridge-new-Sheet.png" id="5_qhdmy"]
 
+[sub_resource type="Animation" id="Animation_hb78p"]
+resource_name = "DownAttack"
+length = 0.21
+step = 0.07
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Refrigerator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 5, 8]
+}
+
 [sub_resource type="Animation" id="Animation_we4x3"]
 resource_name = "DownIdle"
 length = 0.4
@@ -191,6 +208,23 @@ tracks/4/keys = {
 "values": [2]
 }
 
+[sub_resource type="Animation" id="Animation_227lf"]
+resource_name = "RightAttack"
+length = 0.21
+step = 0.07
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Refrigerator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 4, 7]
+}
+
 [sub_resource type="Animation" id="Animation_k3j0l"]
 resource_name = "RightIdle"
 length = 0.4
@@ -295,6 +329,23 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_dt7ip"]
+resource_name = "UpAttack"
+length = 0.21
+step = 0.07
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Refrigerator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 6]
 }
 
 [sub_resource type="Animation" id="Animation_l3d54"]
@@ -415,57 +466,6 @@ tracks/4/keys = {
 "args": [],
 "method": &"reset_sprite_flips"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_hb78p"]
-resource_name = "DownAttack"
-length = 0.21
-step = 0.07
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Refrigerator/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.14),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [2, 5, 8]
-}
-
-[sub_resource type="Animation" id="Animation_227lf"]
-resource_name = "RightAttack"
-length = 0.21
-step = 0.07
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Refrigerator/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.14),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 4, 7]
-}
-
-[sub_resource type="Animation" id="Animation_dt7ip"]
-resource_name = "UpAttack"
-length = 0.21
-step = 0.07
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Refrigerator/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.14),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 3, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1arbr"]
