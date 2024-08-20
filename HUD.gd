@@ -1,7 +1,27 @@
 extends CanvasLayer
 var time: int = 0
+
+var A = false
+var B = false
+
 func update_health_bar(percentage : float):
 	$Health/HealthBar.value = percentage
+	
+
+func update_station_a(percentage : float):
+	$Bluetooth/A.value = percentage
+	if $Bluetooth/A.value <= 0:
+		A = true
+		if B:
+			get_parent().add_health(-20)
+
+func update_station_b(percentage : float):
+	$Bluetooth/B.value = percentage
+	if $Bluetooth/B.value <= 0:
+		B = true
+		if A:
+			get_parent().add_health(-20)
+
 func handle_death():
 	$Game_over.visible = true
 	$Health.visible = false

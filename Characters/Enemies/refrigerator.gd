@@ -10,6 +10,11 @@ var can_turn = true
 @onready var attack_finish_timer = $Refrigerator/AttackFinish
 @onready var attack_cooldown_timer = $Refrigerator/AttackCooldown
 
+func _ready():
+	enemy_init()
+	player = get_tree().get_first_node_in_group("station")
+	current_target = player
+
 func _process(delta):
 	if current_target != null:
 		if can_turn:	

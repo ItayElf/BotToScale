@@ -708,8 +708,9 @@ size = Vector2(10, 12)
 size = Vector2(285, 214)
 
 [node name="Coffee" instance=ExtResource("1_iax8p")]
+collision_mask = 71
 script = ExtResource("2_rhcgi")
-projectile_speed = 140.0
+projectile_speed = 170.0
 projectile_damage = 1
 follow_distance = 80.0
 speed = 70.0
@@ -789,7 +790,7 @@ hframes = 3
 vframes = 4
 
 [node name="CoffeeCooldown" type="Timer" parent="Coffee" index="1"]
-wait_time = 1.7
+wait_time = 1.4
 autostart = true
 
 [node name="Refrigerator" type="CollisionShape2D" parent="." index="10"]

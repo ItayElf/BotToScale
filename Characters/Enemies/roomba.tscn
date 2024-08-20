@@ -314,6 +314,7 @@ size = Vector2(129, 127)
 size = Vector2(10, 12)
 
 [node name="Roomba" instance=ExtResource("1_f7kcy")]
+collision_mask = 71
 script = ExtResource("2_qs4df")
 search_delay = 1.0
 max_health = 80.0
