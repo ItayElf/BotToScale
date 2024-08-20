@@ -711,7 +711,6 @@ size = Vector2(10, 12)
 size = Vector2(285, 214)
 
 [node name="Refrigerator" instance=ExtResource("1_tht3k")]
-collision_mask = 71
 script = ExtResource("2_hb2xc")
 freeze_multiplier = 0.5
 damage = 2
@@ -815,7 +814,7 @@ one_shot = true
 one_shot = true
 
 [node name="NewAttackTrigger" type="Area2D" parent="Refrigerator" index="3"]
-collision_mask = 68
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/NewAttackTrigger" index="0"]
 shape = SubResource("RectangleShape2D_x40q7")

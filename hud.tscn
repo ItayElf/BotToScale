@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://0cbot3g0xn1b"]
+[gd_scene load_steps=4 format=3 uid="uid://0cbot3g0xn1b"]
 
 [ext_resource type="Script" path="res://HUD.gd" id="1_ds1ti"]
-[ext_resource type="Texture2D" uid="uid://bdgptnwbh1c8n" path="res://Objects/bluetooth below.png" id="2_vbk7a"]
-[ext_resource type="Texture2D" uid="uid://du1dgcbq74qwa" path="res://Objects/bluetooth dish.png" id="3_ucssl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rfbt"]
 bg_color = Color(0.169245, 0.169245, 0.169245, 1)
@@ -112,7 +110,6 @@ layout_mode = 2
 text = "Main menu"
 
 [node name="Label" type="Label" parent="Game_over"]
-layout_mode = 0
 offset_top = 458.0
 offset_right = 23020.0
 offset_bottom = 1618.0
@@ -123,7 +120,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Game_over"]
-layout_mode = 0
 offset_top = 481.0
 offset_right = 23020.0
 offset_bottom = 2061.0
@@ -156,62 +152,6 @@ horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
-
-[node name="Bluetooth" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -159.0
-offset_right = 159.0
-offset_bottom = 105.0
-grow_horizontal = 2
-
-[node name="A" type="TextureProgressBar" parent="Bluetooth"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 31.0
-offset_bottom = 36.0
-scale = Vector2(2, 2)
-max_value = 1.0
-step = 0.0
-value = 1.0
-fill_mode = 3
-texture_under = ExtResource("2_vbk7a")
-texture_progress = ExtResource("3_ucssl")
-
-[node name="Label" type="Label" parent="Bluetooth/A"]
-layout_mode = 0
-offset_left = -10.0
-offset_top = 18.0
-offset_right = 30.0
-offset_bottom = 41.0
-text = "A"
-horizontal_alignment = 1
-
-[node name="B" type="TextureProgressBar" parent="Bluetooth"]
-layout_mode = 0
-offset_left = 264.0
-offset_top = 10.0
-offset_right = 287.0
-offset_bottom = 36.0
-scale = Vector2(2, 2)
-max_value = 1.0
-step = 0.0
-value = 1.0
-fill_mode = 3
-texture_under = ExtResource("2_vbk7a")
-texture_progress = ExtResource("3_ucssl")
-
-[node name="Label" type="Label" parent="Bluetooth/B"]
-layout_mode = 0
-offset_left = -10.0
-offset_top = 18.0
-offset_right = 30.0
-offset_bottom = 41.0
-text = "B"
-horizontal_alignment = 1
 
 [connection signal="pressed" from="Game_over/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Game_over/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

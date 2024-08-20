@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://rnwef50uxwrf"]
+[gd_scene load_steps=33 format=3 uid="uid://rnwef50uxwrf"]
 
 [ext_resource type="Script" path="res://sounds/music_controller.gd" id="1_7vlvk"]
 [ext_resource type="AudioStream" uid="uid://60sskb1pnsbg" path="res://Sounds/Music/PickUp1.wav" id="2_bhgm6"]
@@ -19,7 +19,6 @@
 [ext_resource type="AudioStream" uid="uid://c8o7drya2xpxc" path="res://Sounds/Music/Metallic2.wav" id="14_s5o6j"]
 [ext_resource type="AudioStream" uid="uid://b1pkb71prd1oa" path="res://Sounds/Music/RoombaMove.wav" id="15_d7a3i"]
 [ext_resource type="AudioStream" uid="uid://d3vtdhlf3m8q3" path="res://Sounds/Music/MenuClick.wav" id="19_2souk"]
-[ext_resource type="AudioStream" uid="uid://bngolb4hj8kw8" path="res://Sounds/Music/CoffeeFill.wav" id="20_xi2od"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p1l1q"]
 random_pitch = 1.1
@@ -109,13 +108,6 @@ random_pitch = 1.3
 random_volume_offset_db = 1.5
 streams_count = 1
 stream_0/stream = ExtResource("19_2souk")
-stream_0/weight = 1.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oiay1"]
-random_pitch = 1.1
-random_volume_offset_db = 1.0
-streams_count = 1
-stream_0/stream = ExtResource("20_xi2od")
 stream_0/weight = 1.0
 
 [node name="MusicController" type="Node"]
@@ -222,13 +214,6 @@ bus = &"SFX"
 
 [node name="MenuClick" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_ml88t")
-max_distance = 80995.0
-attenuation = 1e-05
-max_polyphony = 11
-bus = &"SFX"
-
-[node name="CoffeeFill" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_oiay1")
 max_distance = 80995.0
 attenuation = 1e-05
 max_polyphony = 11

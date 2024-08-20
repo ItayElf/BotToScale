@@ -9,11 +9,6 @@ var current_offset : Vector2
 @onready var animation_tree = $AnimationTree
 @onready var projectile = preload("res://Objects/coffee_projectile.tscn")
 
-func _ready():
-	enemy_init()
-	player = get_tree().get_first_node_in_group("station")
-	current_target = player
-
 func _process(delta):
 	if current_target != null:	
 		animation_tree.set("parameters/conditions/is_idle", false)

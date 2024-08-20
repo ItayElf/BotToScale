@@ -5,7 +5,7 @@ extends Node2D
 
 func spawn_enemy():
 	var new_enemy = null
-	var enemytype = 2#randi_range(0, 4)
+	var enemytype = randi_range(0, 4)
 	match enemytype:
 		0:
 			new_enemy = preload("res://Objects/Collectibles/collectible.tscn").instantiate()
