@@ -19,6 +19,24 @@ corner_radius_bottom_left = 2
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ds1ti")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = 450.0
+offset_top = 40.0
+offset_right = 463.95
+offset_bottom = 48.32
+scale = Vector2(18.0887, 13.9327)
+color = Color(0.169847, 0.172269, 0.184401, 0.647059)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_left = 470.0
+offset_top = 460.0
+offset_right = 682.0
+offset_bottom = 550.0
+scale = Vector2(1, 1.00267)
+color = Color(0.169847, 0.172269, 0.184401, 0.647059)
+
 [node name="Health" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 7
@@ -60,3 +78,81 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_qb6jc")
 max_value = 1.0
 value = 0.36
 show_percentage = false
+
+[node name="Game_over" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game_over"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.829
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.00567, 1)
+
+[node name="Button" type="Button" parent="Game_over/VBoxContainer"]
+visibility_layer = 0
+layout_mode = 2
+text = "Play again"
+
+[node name="Button2" type="Button" parent="Game_over/VBoxContainer"]
+visibility_layer = 0
+layout_mode = 2
+text = "Main menu"
+
+[node name="Label" type="Label" parent="Game_over"]
+offset_top = 458.0
+offset_right = 23020.0
+offset_bottom = 1618.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 700
+text = "Play again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Game_over"]
+offset_top = 481.0
+offset_right = 23020.0
+offset_bottom = 2061.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 700
+text = "Main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Game_over"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.08
+anchor_right = 1.0
+anchor_bottom = 0.329
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="Label3" type="Label" parent="Game_over/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "High Score: 150"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Game_over/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Score : 23"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Game_over/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Game_over/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

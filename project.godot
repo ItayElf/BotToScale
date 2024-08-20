@@ -18,11 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicController="*res://sounds/music_controller.tscn"
+GlobalHighScore="*res://GlobalHighScore.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
