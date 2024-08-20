@@ -28,5 +28,6 @@ func _on_body_entered(body):
 			queue_free()
 	elif body.get_collision_layer_value(7):
 		if not is_players:
+			body.add_health(-damage)
 			queue_free()
 	

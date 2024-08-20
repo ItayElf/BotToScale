@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cry1nkisotgdf"]
+
+[ext_resource type="Script" path="res://Objects/station.gd" id="1_3bi08"]
+[ext_resource type="Texture2D" uid="uid://cdut6s5nbddxd" path="res://Objects/bluetooth station.png" id="1_jqglj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08svn"]
+size = Vector2(20, 38)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8re7"]
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 0.72549)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0klp3"]
+bg_color = Color(0.133124, 0.627271, 0.738893, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="A" type="StaticBody2D" groups=["station"]]
+z_index = 15
+collision_layer = 64
+collision_mask = 255
+script = ExtResource("1_3bi08")
+max_health = 30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jqglj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_08svn")
+
+[node name="Health Bar" type="ProgressBar" parent="."]
+z_index = 4
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 119.0
+offset_bottom = -15.0
+scale = Vector2(0.3, 0.3)
+theme_override_styles/background = SubResource("StyleBoxFlat_c8re7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0klp3")
+max_value = 1.0
+value = 0.7
+show_percentage = false

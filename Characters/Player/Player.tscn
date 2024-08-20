@@ -970,6 +970,7 @@ disabled = true
 
 [node name="FootstepTimer" type="Timer" parent="."]
 
+[connection signal="area_entered" from="Roomba/Suck Area" to="." method="_on_suck_area_area_entered"]
 [connection signal="body_entered" from="Roomba/Suck Area" to="." method="_on_suck_area_body_entered"]
 [connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_entered"]
 [connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_exited"]

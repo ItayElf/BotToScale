@@ -15,6 +15,7 @@ var health:
 	set = set_health
 var input : Vector2 # used for the animation_tree
 var fridge_counter = 0
+var is_following_player = false
 
 @onready var health_bar : ProgressBar = $"Health Bar"
 @onready var navigation : NavigationAgent2D = $NavigationAgent2D
