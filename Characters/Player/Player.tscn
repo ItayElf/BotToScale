@@ -1,8 +1,9 @@
-[gd_scene load_steps=57 format=3 uid="uid://ov16dtgcf52t"]
+[gd_scene load_steps=58 format=3 uid="uid://ov16dtgcf52t"]
 
 [ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_44d34"]
 [ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
 [ext_resource type="Texture2D" uid="uid://klowcqb8c8de" path="res://Characters/Player/roomba-Sheet.png" id="3_bjihx"]
+[ext_resource type="Texture2D" uid="uid://b33yjj1hatfhn" path="res://Characters/Player/Suck.png" id="3_bs1y4"]
 [ext_resource type="PackedScene" uid="uid://0cbot3g0xn1b" path="res://hud.tscn" id="3_rgyg6"]
 [ext_resource type="Texture2D" uid="uid://s7qna3fmpdir" path="res://Characters/Player/blender-Sheet.png" id="3_v882h"]
 [ext_resource type="Texture2D" uid="uid://cxsrnjt4cou8b" path="res://Characters/Player/coffee machine-Sheet.png" id="4_3ncvm"]
@@ -579,9 +580,8 @@ _data = {
 "UpMove": SubResource("Animation_b38xw")
 }
 
-[sub_resource type="Animation" id="Animation_34723"]
-resource_name = "Zoomed_In"
-length = 0.1
+[sub_resource type="Animation" id="Animation_1tdel"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -592,11 +592,42 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, 2)]
+"values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1tdel"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_w7fg3"]
+resource_name = "Zoom_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_86vnb"]
+resource_name = "Zoom_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_34723"]
+resource_name = "Zoomed_In"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -624,36 +655,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_w7fg3"]
-resource_name = "Zoom_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_86vnb"]
-resource_name = "Zoom_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2y0qd"]
@@ -813,7 +814,6 @@ refrigerator_speed = 75.0
 refrigerator_acceleration = 1000.0
 refrigerator_damage = 100.0
 refrigerator_slow_multiplier = 0.45
-start_state = 3
 footstep_timer_speed_multiplier = 60.0
 
 [node name="Sprite Animator" type="AnimationPlayer" parent="."]
@@ -825,7 +825,6 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_2y0qd")
 }
-autoplay = "Zoomed_In"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_bphao")
@@ -838,7 +837,6 @@ parameters/Idle/blend_position = Vector2(-0.00396824, -1.01058)
 parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
@@ -860,6 +858,10 @@ collision_mask = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Roomba/Suck Area"]
 shape = SubResource("CircleShape2D_fhenn")
 disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Roomba/Suck Area"]
+visible = false
+texture = ExtResource("3_bs1y4")
 
 [node name="Blender" type="CollisionShape2D" parent="."]
 visible = false

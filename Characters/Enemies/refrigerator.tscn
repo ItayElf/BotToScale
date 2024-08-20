@@ -716,7 +716,7 @@ freeze_multiplier = 0.5
 damage = 2
 max_health = 150.0
 speed = 70.0
-knockback_multiplier = 0.6
+knockback_multiplier = 0.15
 collectible_drop_chance = 0.497
 
 [node name="CollisionShape2D" parent="." index="0"]

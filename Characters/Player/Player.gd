@@ -111,19 +111,18 @@ func _change_velocity(delta):
 func _process(delta):
 	if is_alive:
 		match current_state:
-		  State.ROOMBA:
-			  roomba_behaviour(delta)
-		  State.BLENDER:
-			  blender_behaviour(delta)
-		  State.FAN:
-			  fan_behaviour(delta)
-		  State.COFFEE:
-			  coffee_behaviour(delta)
-	
-	  update_animator()
-	
-	  # REMOVE BEFORE FINAL BUILD
-	  DEBUG_state_changer()
+			State.ROOMBA:
+				roomba_behaviour(delta)
+			State.BLENDER:
+				blender_behaviour(delta)
+			State.FAN:
+				fan_behaviour(delta)
+			State.COFFEE:
+				coffee_behaviour(delta)
+		
+		update_animator()
+		# REMOVE BEFORE FINAL BUILD
+		DEBUG_state_changer()
 
 func play_footstep():
 	if current_state == State.REFRIGERATOR:
@@ -217,6 +216,7 @@ func change_state(state : State):
 			roomba.set_deferred("disabled", true)
 			MusicController.s_loop_roomba_move()
 			$"Roomba/Suck Area/CollisionShape2D".disabled = true
+			$"Roomba/Suck Area/Sprite2D".visible = false
 			MusicController.s_loop_robot_suck()
 		State.BLENDER:
 			blender.visible = false
@@ -364,10 +364,12 @@ func _on_any_trigger_body_exited(body):
 func roomba_behaviour(delta):
 	if Input.is_action_just_pressed("ability"):
 		$"Roomba/Suck Area/CollisionShape2D".disabled = false
+		$"Roomba/Suck Area/Sprite2D".visible = true
 		MusicController.p_loop_robot_suck()
 	
 	if Input.is_action_just_released("ability"):
 		$"Roomba/Suck Area/CollisionShape2D".disabled = true
+		$"Roomba/Suck Area/Sprite2D".visible = false
 		MusicController.s_loop_robot_suck()
 
 func blender_behaviour(delta):
