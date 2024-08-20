@@ -1,5 +1,7 @@
 extends Node2D
 @onready var path_follow = $Spawner/PathFollow2D
+@export var time = 2
+@export var timemulti:float= 1
 
 func spawn_enemy():
 	var new_enemy = null
@@ -22,3 +24,10 @@ func spawn_enemy():
 
 func _on_timer_timeout():
 	spawn_enemy()
+	timemulti -= 0.003
+	time *= timemulti
+	if time<0.2:
+		$Timer.wait_time = 0.2
+	else:
+		$Timer.wait_time = time
+	print(time)

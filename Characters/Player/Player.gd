@@ -122,7 +122,7 @@ func _process(delta):
 		
 		update_animator()
 		# REMOVE BEFORE FINAL BUILD
-		DEBUG_state_changer()
+		
 
 func play_footstep():
 	if current_state == State.REFRIGERATOR:
