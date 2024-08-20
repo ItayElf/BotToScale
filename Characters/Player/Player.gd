@@ -57,6 +57,8 @@ var hitlist : Array[Enemy]
 var health
 var can_attack := true
 var can_turn := true
+
+var is_alive := true
 var can_shoot := true
 var speed_multiplier = 1.0
 var fridge_counter = 0
@@ -107,21 +109,21 @@ func _change_velocity(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, speed_multiplier * deceleration * delta)
 
 func _process(delta):
+	if is_alive:
+		match current_state:
+		  State.ROOMBA:
+			  roomba_behaviour(delta)
+		  State.BLENDER:
+			  blender_behaviour(delta)
+		  State.FAN:
+			  fan_behaviour(delta)
+		  State.COFFEE:
+			  coffee_behaviour(delta)
 	
-	match current_state:
-		State.ROOMBA:
-			roomba_behaviour(delta)
-		State.BLENDER:
-			blender_behaviour(delta)
-		State.FAN:
-			fan_behaviour(delta)
-		State.COFFEE:
-			coffee_behaviour(delta)
+	  update_animator()
 	
-	update_animator()
-	
-	# REMOVE BEFORE FINAL BUILD
-	DEBUG_state_changer()
+	  # REMOVE BEFORE FINAL BUILD
+	  DEBUG_state_changer()
 
 func play_footstep():
 	if current_state == State.REFRIGERATOR:
@@ -131,10 +133,9 @@ func play_footstep():
 		print(current_state)
 
 func _physics_process(delta):
-	_change_velocity(delta)
-	
-	
-	move_and_slide()
+	if is_alive:
+		_change_velocity(delta)
+		move_and_slide()
 
 func DEBUG_state_changer():
 	if Input.is_action_just_pressed("roomba"):
@@ -297,10 +298,12 @@ func change_state(state : State):
 func add_health(amount: float):
 	if amount < 0:
 		health += amount
-		MusicController.p_hit()
+		if is_alive:
+			MusicController.p_hit()
 		if health < 0:
-			die()
-			MusicController.p_game_over()
+			if is_alive:
+				die()
+				MusicController.p_game_over()
 		else:
 			check_for_state_change()
 	else:
@@ -311,8 +314,8 @@ func add_health(amount: float):
 	hud.update_health_bar(health / max_health)
 
 func die():
-	queue_free()
-
+	is_alive = false
+	hud.handle_death()
 func check_for_state_change():
 	
 	if health >= fan_change_health:
@@ -475,7 +478,7 @@ func _on_attack_finish_timeout():
 
 
 func _on_footstep_timer_timeout():
-	if input != Vector2.ZERO:
+	if input != Vector2.ZERO and is_alive:
 		play_footstep()
 		print("here")
 	else:
