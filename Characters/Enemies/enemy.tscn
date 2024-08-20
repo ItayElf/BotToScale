@@ -36,6 +36,7 @@ shape = SubResource("RectangleShape2D_6ottm")
 texture = ExtResource("2_ox4c4")
 
 [node name="Health Bar" type="ProgressBar" parent="."]
+z_index = 4
 offset_left = -21.0
 offset_top = -17.0
 offset_right = 119.0

@@ -1,13 +1,13 @@
-[gd_scene load_steps=51 format=3 uid="uid://ov16dtgcf52t"]
+[gd_scene load_steps=51 format=3 uid="uid://c8jt3lgqhnrpb"]
 
-[ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_44d34"]
-[ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
-[ext_resource type="Texture2D" uid="uid://klowcqb8c8de" path="res://Characters/Player/roomba-Sheet.png" id="3_bjihx"]
-[ext_resource type="PackedScene" uid="uid://0cbot3g0xn1b" path="res://hud.tscn" id="3_rgyg6"]
-[ext_resource type="Texture2D" uid="uid://s7qna3fmpdir" path="res://Characters/Player/blender-Sheet.png" id="3_v882h"]
-[ext_resource type="Texture2D" uid="uid://cxsrnjt4cou8b" path="res://Characters/Player/coffee machine-Sheet.png" id="4_3ncvm"]
-[ext_resource type="Texture2D" uid="uid://c5tir4bb5otik" path="res://Characters/Player/fridge-new-Sheet.png" id="5_qhdmy"]
-[ext_resource type="Texture2D" uid="uid://bsgbwmqgbwc3g" path="res://Characters/Player/freeze_area.png" id="6_1fpbx"]
+[ext_resource type="PackedScene" uid="uid://btes4066pdf3v" path="res://Characters/Enemies/enemy.tscn" id="1_tht3k"]
+[ext_resource type="Script" path="res://Characters/Enemies/refrigerator.gd" id="2_hb2xc"]
+[ext_resource type="Texture2D" uid="uid://klowcqb8c8de" path="res://Characters/Player/roomba-Sheet.png" id="2_w5t4g"]
+[ext_resource type="Texture2D" uid="uid://s7qna3fmpdir" path="res://Characters/Player/blender-Sheet.png" id="3_qfp63"]
+[ext_resource type="Texture2D" uid="uid://cxsrnjt4cou8b" path="res://Characters/Player/coffee machine-Sheet.png" id="4_qided"]
+[ext_resource type="Texture2D" uid="uid://d10yvmntamx6u" path="res://Characters/Enemies/fridge-new-Sheet enemy.png" id="6_aqohv"]
+[ext_resource type="Texture2D" uid="uid://bsgbwmqgbwc3g" path="res://Characters/Player/freeze_area.png" id="6_gvi5a"]
+[ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="7_xg27b"]
 
 [sub_resource type="Animation" id="Animation_hb78p"]
 resource_name = "DownAttack"
@@ -671,7 +671,7 @@ advance_condition = &"is_attacking"
 advance_mode = 2
 advance_condition = &"is_attacking"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bphao"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yo061"]
 states/Ability/node = SubResource("AnimationNodeBlendSpace2D_qja0o")
 states/Ability/position = Vector2(630, 204)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_wrthb")
@@ -680,61 +680,63 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_6vlwj")
 states/Move/position = Vector2(647, 76)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_g3pgw"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_ds4uj"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_1mim4"), "Idle", "Ability", SubResource("AnimationNodeStateMachineTransition_ujggt"), "Move", "Ability", SubResource("AnimationNodeStateMachineTransition_6shry")]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_thxy3"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxeqi"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fhenn"]
-radius = 43.2897
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tf28"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gc2mx"]
 size = Vector2(13.5, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_felli"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpc4y"]
 size = Vector2(19, 19)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oehhd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63hfi"]
 size = Vector2(18, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2fv4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nawgm"]
 size = Vector2(22, 36)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vbv3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x40q7"]
+size = Vector2(26, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuerw"]
 size = Vector2(22, 34)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wmvdq"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k6g34"]
 radius = 50.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qldb5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuu3b"]
 size = Vector2(10, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_en0uv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp4qo"]
 size = Vector2(285, 214)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 4
-collision_mask = 3
-script = ExtResource("1_44d34")
-max_health = 12.0
-start_health = 12
-fan_change_health = 15
-roomba_speed = 180.0
-blender_speed = 150.0
-blender_knockback_max_speed = 100.0
-coffee_speed = 130.0
-coffee_projectile_speed = 500.0
-refrigerator_speed = 85.0
-refrigerator_damage = 100.0
-refrigerator_slow_multiplier = 0.35
-start_state = 3
-footstep_timer_speed_multiplier = 60.0
+[node name="Refrigerator" instance=ExtResource("1_tht3k")]
+script = ExtResource("2_hb2xc")
+freeze_multiplier = 0.5
+damage = 2
+max_health = 150.0
+speed = 70.0
+knockback_multiplier = 0.6
+collectible_drop_chance = 0.497
 
-[node name="Sprite Animator" type="AnimationPlayer" parent="."]
+[node name="CollisionShape2D" parent="." index="0"]
+visible = false
+disabled = true
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
+
+[node name="Health Bar" parent="." index="2"]
+offset_top = -41.0
+offset_bottom = -24.0
+
+[node name="Sprite Animator" type="AnimationPlayer" parent="." index="5"]
 libraries = {
 "": SubResource("AnimationLibrary_1arbr")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_bphao")
+[node name="AnimationTree" type="AnimationTree" parent="." index="6"]
+tree_root = SubResource("AnimationNodeStateMachine_yo061")
 anim_player = NodePath("../Sprite Animator")
 parameters/conditions/is_attacking = false
 parameters/conditions/is_idle = true
@@ -743,146 +745,126 @@ parameters/Ability/blend_position = Vector2(0.581931, 1.47244)
 parameters/Idle/blend_position = Vector2(-0.00396824, -1.01058)
 parameters/Move/blend_position = Vector2(0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-position_smoothing_speed = 20.0
-
-[node name="Roomba" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_thxy3")
+[node name="Roomba" type="CollisionShape2D" parent="." index="7"]
+visible = false
+shape = SubResource("CircleShape2D_fxeqi")
 disabled = true
 
-[node name="Sprite" type="Sprite2D" parent="Roomba"]
+[node name="Sprite" type="Sprite2D" parent="Roomba" index="0"]
 position = Vector2(0, 1)
-texture = ExtResource("3_bjihx")
+texture = ExtResource("2_w5t4g")
 hframes = 3
 vframes = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 48, 64)
 
-[node name="Suck Area" type="Area2D" parent="Roomba"]
-collision_mask = 10
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Roomba/Suck Area"]
-shape = SubResource("CircleShape2D_fhenn")
-disabled = true
-
-[node name="Blender" type="CollisionShape2D" parent="."]
+[node name="Blender" type="CollisionShape2D" parent="." index="8"]
 visible = false
 position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_4tf28")
+shape = SubResource("RectangleShape2D_gc2mx")
 disabled = true
 
-[node name="Sprite" type="Sprite2D" parent="Blender"]
+[node name="Sprite" type="Sprite2D" parent="Blender" index="0"]
 position = Vector2(0, -5)
-texture = ExtResource("3_v882h")
+texture = ExtResource("3_qfp63")
 hframes = 3
 vframes = 4
 frame = 2
 
-[node name="AttackTrigger" type="Area2D" parent="Blender"]
+[node name="AttackTrigger" type="Area2D" parent="Blender" index="1"]
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blender/AttackTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blender/AttackTrigger" index="0"]
 position = Vector2(16.5, 0.5)
-shape = SubResource("RectangleShape2D_felli")
+shape = SubResource("RectangleShape2D_fpc4y")
 disabled = true
 
-[node name="Coffee" type="CollisionShape2D" parent="."]
+[node name="Coffee" type="CollisionShape2D" parent="." index="9"]
 visible = false
 position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_oehhd")
+shape = SubResource("RectangleShape2D_63hfi")
 disabled = true
 
-[node name="Sprite" type="Sprite2D" parent="Coffee"]
-texture = ExtResource("4_3ncvm")
+[node name="Sprite" type="Sprite2D" parent="Coffee" index="0"]
+texture = ExtResource("4_qided")
 offset = Vector2(0, -1)
 hframes = 3
 vframes = 4
 
-[node name="CoffeeCooldown" type="Timer" parent="Coffee"]
+[node name="CoffeeCooldown" type="Timer" parent="Coffee" index="1"]
 one_shot = true
 
-[node name="Refrigerator" type="CollisionShape2D" parent="."]
-visible = false
+[node name="Refrigerator" type="CollisionShape2D" parent="." index="10"]
 position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_f2fv4")
-disabled = true
+shape = SubResource("RectangleShape2D_nawgm")
 
-[node name="Sprite" type="Sprite2D" parent="Refrigerator"]
+[node name="Sprite" type="Sprite2D" parent="Refrigerator" index="0"]
 z_index = 2
-texture = ExtResource("5_qhdmy")
+texture = ExtResource("6_aqohv")
 hframes = 3
 vframes = 3
 frame = 2
 
-[node name="AttackFinish" type="Timer" parent="Refrigerator"]
+[node name="AttackFinish" type="Timer" parent="Refrigerator" index="1"]
 wait_time = 0.21
 one_shot = true
 
-[node name="AttackCooldown" type="Timer" parent="Refrigerator"]
-wait_time = 0.3
+[node name="AttackCooldown" type="Timer" parent="Refrigerator" index="2"]
 one_shot = true
 
-[node name="AttackTrigger" type="Area2D" parent="Refrigerator"]
-collision_mask = 2
-monitoring = false
+[node name="NewAttackTrigger" type="Area2D" parent="Refrigerator" index="3"]
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/AttackTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/NewAttackTrigger" index="0"]
+shape = SubResource("RectangleShape2D_x40q7")
+
+[node name="AttackTrigger" type="Area2D" parent="Refrigerator" index="4"]
+visible = false
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/AttackTrigger" index="0"]
 position = Vector2(0, 21)
-shape = SubResource("RectangleShape2D_8vbv3")
+shape = SubResource("RectangleShape2D_fuerw")
 disabled = true
 
-[node name="FreezeTrigger" type="Area2D" parent="Refrigerator"]
-collision_mask = 2
-monitoring = false
+[node name="FreezeTrigger" type="Area2D" parent="Refrigerator" index="5"]
+collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/FreezeTrigger"]
-shape = SubResource("CircleShape2D_wmvdq")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/FreezeTrigger" index="0"]
+shape = SubResource("CircleShape2D_k6g34")
 
-[node name="Sprite2D" type="Sprite2D" parent="Refrigerator/FreezeTrigger"]
+[node name="Sprite2D" type="Sprite2D" parent="Refrigerator/FreezeTrigger" index="1"]
 modulate = Color(1, 1, 1, 0.34902)
 z_index = 1
-texture = ExtResource("6_1fpbx")
+texture = ExtResource("6_gvi5a")
 
-[node name="Fan" type="CollisionShape2D" parent="."]
+[node name="Fan" type="CollisionShape2D" parent="." index="11"]
 visible = false
-shape = SubResource("RectangleShape2D_qldb5")
+shape = SubResource("RectangleShape2D_yuu3b")
 disabled = true
 
-[node name="Sprite" type="Sprite2D" parent="Fan"]
+[node name="Sprite" type="Sprite2D" parent="Fan" index="0"]
 modulate = Color(1, 0.294118, 0.627451, 1)
-texture = ExtResource("2_g58rm")
+texture = ExtResource("7_xg27b")
 
-[node name="Label" type="Label" parent="Fan"]
+[node name="Label" type="Label" parent="Fan" index="1"]
 offset_left = 0.5
 offset_top = -96.5
 offset_right = 72.5
 offset_bottom = -73.5
 text = "FAN"
 
-[node name="PushTrigger" type="Area2D" parent="Fan"]
+[node name="PushTrigger" type="Area2D" parent="Fan" index="2"]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fan/PushTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fan/PushTrigger" index="0"]
 position = Vector2(145, 0.5)
-shape = SubResource("RectangleShape2D_en0uv")
+shape = SubResource("RectangleShape2D_kp4qo")
 disabled = true
 
-[node name="HUD" parent="." instance=ExtResource("3_rgyg6")]
-
-[node name="FootstepTimer" type="Timer" parent="."]
-
-[connection signal="body_entered" from="Roomba/Suck Area" to="." method="_on_suck_area_body_entered"]
-[connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_entered"]
-[connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_exited"]
-[connection signal="timeout" from="Coffee/CoffeeCooldown" to="." method="_on_coffee_cooldown_timeout"]
 [connection signal="timeout" from="Refrigerator/AttackFinish" to="." method="_on_attack_finish_timeout"]
 [connection signal="timeout" from="Refrigerator/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
-[connection signal="body_entered" from="Refrigerator/AttackTrigger" to="." method="_on_attack_trigger_body_entered"]
+[connection signal="body_entered" from="Refrigerator/NewAttackTrigger" to="." method="_on_new_attack_trigger_body_entered"]
 [connection signal="body_entered" from="Refrigerator/FreezeTrigger" to="." method="_on_freeze_trigger_body_entered"]
 [connection signal="body_exited" from="Refrigerator/FreezeTrigger" to="." method="_on_freeze_trigger_body_exited"]
-[connection signal="body_entered" from="Fan/PushTrigger" to="." method="_on_any_trigger_body_entered"]
-[connection signal="body_exited" from="Fan/PushTrigger" to="." method="_on_any_trigger_body_exited"]
-[connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]
