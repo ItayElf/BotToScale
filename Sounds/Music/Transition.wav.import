@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://behixnf4dudo3"
-path="res://.godot/imported/Transition.wav-0942e735f92c63374115b7d5f09f146e.sample"
+path="res://.godot/imported/Transition.wav-33d4e5672cf559b959a4fb41d313b028.sample"
 
 [deps]
 
-source_file="res://Sounds/Music/Transition.wav"
-dest_files=["res://.godot/imported/Transition.wav-0942e735f92c63374115b7d5f09f146e.sample"]
+source_file="res://sounds/Music/Transition.wav"
+dest_files=["res://.godot/imported/Transition.wav-33d4e5672cf559b959a4fb41d313b028.sample"]
 
 [params]
 

@@ -185,7 +185,7 @@ curve = SubResource("Curve2D_chj7t")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Spawner"]
 position = Vector2(-74.961, 434.321)
-rotation = -2.67026
+rotation = -2.67025
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

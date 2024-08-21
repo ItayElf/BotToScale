@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bamrlwi35v36m"
-path="res://.godot/imported/PickUp3.wav-23f45d4906e06c8ec5bc44e1d35c2c7e.sample"
+path="res://.godot/imported/PickUp3.wav-3687037690099df8277459b7081c29cb.sample"
 
 [deps]
 
-source_file="res://Sounds/Music/PickUp3.wav"
-dest_files=["res://.godot/imported/PickUp3.wav-23f45d4906e06c8ec5bc44e1d35c2c7e.sample"]
+source_file="res://sounds/Music/PickUp3.wav"
+dest_files=["res://.godot/imported/PickUp3.wav-3687037690099df8277459b7081c29cb.sample"]
 
 [params]
 

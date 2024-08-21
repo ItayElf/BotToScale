@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://j7jkn08p22km"
-path="res://.godot/imported/METALLIC_MESS.wav-711c0486f64e1319ddddca45bc70f99a.sample"
+path="res://.godot/imported/METALLIC_MESS.wav-0600824828429d86c7235642fbb3c7f0.sample"
 
 [deps]
 
-source_file="res://Sounds/Music/METALLIC_MESS.wav"
-dest_files=["res://.godot/imported/METALLIC_MESS.wav-711c0486f64e1319ddddca45bc70f99a.sample"]
+source_file="res://sounds/Music/METALLIC_MESS.wav"
+dest_files=["res://.godot/imported/METALLIC_MESS.wav-0600824828429d86c7235642fbb3c7f0.sample"]
 
 [params]
 

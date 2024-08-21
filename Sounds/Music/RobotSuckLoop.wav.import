@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c55nffxapjxdr"
-path="res://.godot/imported/RobotSuckLoop.wav-16dc02c9e5a33cd8562a8596ec85c036.sample"
+path="res://.godot/imported/RobotSuckLoop.wav-a280ace992e73d2c4e590403cedf4d4e.sample"
 
 [deps]
 
-source_file="res://Sounds/Music/RobotSuckLoop.wav"
-dest_files=["res://.godot/imported/RobotSuckLoop.wav-16dc02c9e5a33cd8562a8596ec85c036.sample"]
+source_file="res://sounds/Music/RobotSuckLoop.wav"
+dest_files=["res://.godot/imported/RobotSuckLoop.wav-a280ace992e73d2c4e590403cedf4d4e.sample"]
 
 [params]
 

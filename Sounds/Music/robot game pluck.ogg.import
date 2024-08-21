@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://bnv4qynkkrtcg"
-path="res://.godot/imported/robot game pluck.ogg-3649b620db86b1ef8c2af1562b291289.oggvorbisstr"
+path="res://.godot/imported/robot game pluck.ogg-e11ad479b22a945dd0da4d1fba4d507c.oggvorbisstr"
 
 [deps]
 
-source_file="res://Sounds/Music/robot game pluck.ogg"
-dest_files=["res://.godot/imported/robot game pluck.ogg-3649b620db86b1ef8c2af1562b291289.oggvorbisstr"]
+source_file="res://sounds/Music/robot game pluck.ogg"
+dest_files=["res://.godot/imported/robot game pluck.ogg-e11ad479b22a945dd0da4d1fba4d507c.oggvorbisstr"]
 
 [params]
 

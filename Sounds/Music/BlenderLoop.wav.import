@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://l2kdt6yi8fsf"
-path="res://.godot/imported/BlenderLoop.wav-112527c8e406298b3aaba73925275154.sample"
+path="res://.godot/imported/BlenderLoop.wav-17d290b14abddf118ec9dc86ee76fd5b.sample"
 
 [deps]
 
-source_file="res://Sounds/Music/BlenderLoop.wav"
-dest_files=["res://.godot/imported/BlenderLoop.wav-112527c8e406298b3aaba73925275154.sample"]
+source_file="res://sounds/Music/BlenderLoop.wav"
+dest_files=["res://.godot/imported/BlenderLoop.wav-17d290b14abddf118ec9dc86ee76fd5b.sample"]
 
 [params]
 
