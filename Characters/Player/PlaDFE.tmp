@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://ov16dtgcf52t"]
+
+[ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_44d34"]
+[ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o54q1"]
+size = Vector2(127, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_felli"]
+size = Vector2(129, 127)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_44d34")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="Roomba" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Roomba"]
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Roomba"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 40.5
+offset_bottom = -73.5
+text = "ROOMBA"
+
+[node name="Blender" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Blender"]
+modulate = Color(1, 1, 0.156863, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Blender"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "BLENDER"
+
+[node name="AttackTrigger" type="Area2D" parent="Blender"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blender/AttackTrigger"]
+position = Vector2(71.5, 0.5)
+shape = SubResource("RectangleShape2D_felli")
+disabled = true
+
+[node name="Coffee" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Coffee"]
+modulate = Color(1, 0.577356, 0.031439, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Coffee"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "COFFE MACHINE"
+
+[node name="Refrigerator" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Refrigerator"]
+modulate = Color(0.0431373, 1, 1, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Refrigerator"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "REFRIGERATOR"
+
+[node name="Fan" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_o54q1")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Fan"]
+modulate = Color(1, 0.294118, 0.627451, 1)
+position = Vector2(-0.5, -0.5)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Fan"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "FAN"
+
+[connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_attack_trigger_body_entered"]
+[connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_attack_trigger_body_exited"]

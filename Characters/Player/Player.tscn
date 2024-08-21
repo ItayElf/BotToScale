@@ -1,0 +1,984 @@
+[gd_scene load_steps=58 format=3 uid="uid://ov16dtgcf52t"]
+
+[ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_44d34"]
+[ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_g58rm"]
+[ext_resource type="Texture2D" uid="uid://klowcqb8c8de" path="res://Characters/Player/roomba-Sheet.png" id="3_bjihx"]
+[ext_resource type="Texture2D" uid="uid://b33yjj1hatfhn" path="res://Characters/Player/Suck.png" id="3_bs1y4"]
+[ext_resource type="PackedScene" uid="uid://0cbot3g0xn1b" path="res://hud.tscn" id="3_rgyg6"]
+[ext_resource type="Texture2D" uid="uid://s7qna3fmpdir" path="res://Characters/Player/blender-Sheet.png" id="3_v882h"]
+[ext_resource type="Texture2D" uid="uid://cxsrnjt4cou8b" path="res://Characters/Player/coffee machine-Sheet.png" id="4_3ncvm"]
+[ext_resource type="Texture2D" uid="uid://c5tir4bb5otik" path="res://Characters/Player/fridge-new-Sheet.png" id="5_qhdmy"]
+[ext_resource type="Texture2D" uid="uid://bsgbwmqgbwc3g" path="res://Characters/Player/freeze_area.png" id="6_1fpbx"]
+
+[sub_resource type="Animation" id="Animation_hb78p"]
+resource_name = "DownAttack"
+length = 0.21
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Refrigerator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 5, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 13)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_we4x3"]
+resource_name = "DownIdle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 8, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coffee/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 6, 9]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Refrigerator/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_iagiq"]
+resource_name = "DownMove"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 8, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 8, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coffee/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Refrigerator/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_sprite_flips"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_uuteb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Roomba/Sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Blender/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Coffee/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Refrigerator/Sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 21)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_227lf"]
+resource_name = "RightAttack"
+length = 0.21
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Refrigerator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 4, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_k3j0l"]
+resource_name = "RightIdle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coffee/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Refrigerator/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_syfxd"]
+resource_name = "RightMove"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coffee/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Refrigerator/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_dt7ip"]
+resource_name = "UpAttack"
+length = 0.21
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Refrigerator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Refrigerator/AttackTrigger/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_l3d54"]
+resource_name = "UpIdle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 6, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coffee/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Refrigerator/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b38xw"]
+resource_name = "UpMove"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 6, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coffee/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Refrigerator/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_sprite_flips"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1arbr"]
+_data = {
+"DownAttack": SubResource("Animation_hb78p"),
+"DownIdle": SubResource("Animation_we4x3"),
+"DownMove": SubResource("Animation_iagiq"),
+"RESET": SubResource("Animation_uuteb"),
+"RightAttack": SubResource("Animation_227lf"),
+"RightIdle": SubResource("Animation_k3j0l"),
+"RightMove": SubResource("Animation_syfxd"),
+"UpAttack": SubResource("Animation_dt7ip"),
+"UpIdle": SubResource("Animation_l3d54"),
+"UpMove": SubResource("Animation_b38xw")
+}
+
+[sub_resource type="Animation" id="Animation_1tdel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w7fg3"]
+resource_name = "Zoom_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_86vnb"]
+resource_name = "Zoom_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_34723"]
+resource_name = "Zoomed_In"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_7s155"]
+resource_name = "Zoomed_out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2y0qd"]
+_data = {
+"RESET": SubResource("Animation_1tdel"),
+"Zoom_in": SubResource("Animation_w7fg3"),
+"Zoom_out": SubResource("Animation_86vnb"),
+"Zoomed_In": SubResource("Animation_34723"),
+"Zoomed_out": SubResource("Animation_7s155")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ok88"]
+animation = &"UpAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iuva8"]
+animation = &"DownAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dg3jv"]
+animation = &"RightAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ovs5j"]
+animation = &"RightAttack"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qja0o"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5ok88")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_iuva8")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_dg3jv")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ovs5j")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ne1eb"]
+animation = &"UpIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_472rl"]
+animation = &"RightIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnmfn"]
+animation = &"RightIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wc2oj"]
+animation = &"DownIdle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_wrthb"]
+auto_triangles = false
+blend_point_0/node = SubResource("AnimationNodeAnimation_ne1eb")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_472rl")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_pnmfn")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_wc2oj")
+blend_point_3/pos = Vector2(0, 1)
+triangles = PackedInt32Array(0, 1, 2, 1, 2, 3)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oc1xo"]
+animation = &"UpMove"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dm4mj"]
+animation = &"DownMove"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rd355"]
+animation = &"RightMove"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hfomj"]
+animation = &"RightMove"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_6vlwj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_oc1xo")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_dm4mj")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_rd355")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_hfomj")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+sync = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g3pgw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ds4uj"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1mim4"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ujggt"]
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6shry"]
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bphao"]
+states/Ability/node = SubResource("AnimationNodeBlendSpace2D_qja0o")
+states/Ability/position = Vector2(630, 204)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_wrthb")
+states/Idle/position = Vector2(460, 126)
+states/Move/node = SubResource("AnimationNodeBlendSpace2D_6vlwj")
+states/Move/position = Vector2(647, 76)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_g3pgw"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_ds4uj"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_1mim4"), "Idle", "Ability", SubResource("AnimationNodeStateMachineTransition_ujggt"), "Move", "Ability", SubResource("AnimationNodeStateMachineTransition_6shry")]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_thxy3"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhenn"]
+radius = 43.2897
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tf28"]
+size = Vector2(13.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_felli"]
+size = Vector2(19, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oehhd"]
+size = Vector2(18, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2fv4"]
+size = Vector2(22, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vbv3"]
+size = Vector2(22, 34)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmvdq"]
+radius = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qldb5"]
+size = Vector2(10, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_en0uv"]
+size = Vector2(285, 214)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_44d34")
+max_health = 12.0
+start_health = 12
+fan_change_health = 15
+roomba_speed = 180.0
+blender_speed = 150.0
+blender_knockback_max_speed = 100.0
+coffee_speed = 130.0
+coffee_acceleration = 1100.0
+coffee_projectile_speed = 500.0
+refrigerator_speed = 75.0
+refrigerator_acceleration = 1000.0
+refrigerator_damage = 100.0
+refrigerator_slow_multiplier = 0.45
+footstep_timer_speed_multiplier = 60.0
+
+[node name="Sprite Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1arbr")
+}
+
+[node name="CameraAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2y0qd")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_bphao")
+anim_player = NodePath("../Sprite Animator")
+parameters/conditions/is_attacking = false
+parameters/conditions/is_idle = true
+parameters/conditions/is_moving = false
+parameters/Ability/blend_position = Vector2(0.581931, 1.47244)
+parameters/Idle/blend_position = Vector2(-0.00396824, -1.01058)
+parameters/Move/blend_position = Vector2(0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
+[node name="Roomba" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_thxy3")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Roomba"]
+position = Vector2(0, 1)
+texture = ExtResource("3_bjihx")
+hframes = 3
+vframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 64)
+
+[node name="Suck Area" type="Area2D" parent="Roomba"]
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roomba/Suck Area"]
+shape = SubResource("CircleShape2D_fhenn")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Roomba/Suck Area"]
+visible = false
+texture = ExtResource("3_bs1y4")
+
+[node name="Blender" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_4tf28")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Blender"]
+position = Vector2(0, -5)
+texture = ExtResource("3_v882h")
+hframes = 3
+vframes = 4
+frame = 2
+
+[node name="AttackTrigger" type="Area2D" parent="Blender"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blender/AttackTrigger"]
+position = Vector2(16.5, 0.5)
+shape = SubResource("RectangleShape2D_felli")
+disabled = true
+
+[node name="Coffee" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_oehhd")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Coffee"]
+texture = ExtResource("4_3ncvm")
+offset = Vector2(0, -1)
+hframes = 3
+vframes = 4
+
+[node name="CoffeeCooldown" type="Timer" parent="Coffee"]
+one_shot = true
+
+[node name="Refrigerator" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_f2fv4")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Refrigerator"]
+z_index = 2
+texture = ExtResource("5_qhdmy")
+hframes = 3
+vframes = 3
+frame = 2
+
+[node name="AttackFinish" type="Timer" parent="Refrigerator"]
+wait_time = 0.21
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="Refrigerator"]
+wait_time = 0.3
+one_shot = true
+
+[node name="AttackTrigger" type="Area2D" parent="Refrigerator"]
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/AttackTrigger"]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_8vbv3")
+disabled = true
+
+[node name="FreezeTrigger" type="Area2D" parent="Refrigerator"]
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Refrigerator/FreezeTrigger"]
+shape = SubResource("CircleShape2D_wmvdq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Refrigerator/FreezeTrigger"]
+modulate = Color(1, 1, 1, 0.34902)
+z_index = 1
+texture = ExtResource("6_1fpbx")
+
+[node name="Fan" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_qldb5")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Fan"]
+modulate = Color(1, 0.294118, 0.627451, 1)
+texture = ExtResource("2_g58rm")
+
+[node name="Label" type="Label" parent="Fan"]
+offset_left = 0.5
+offset_top = -96.5
+offset_right = 72.5
+offset_bottom = -73.5
+text = "FAN"
+
+[node name="PushTrigger" type="Area2D" parent="Fan"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fan/PushTrigger"]
+position = Vector2(145, 0.5)
+shape = SubResource("RectangleShape2D_en0uv")
+disabled = true
+
+[node name="HUD" parent="." instance=ExtResource("3_rgyg6")]
+
+[node name="FootstepTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Roomba/Suck Area" to="." method="_on_suck_area_body_entered"]
+[connection signal="body_entered" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_entered"]
+[connection signal="body_exited" from="Blender/AttackTrigger" to="." method="_on_any_trigger_body_exited"]
+[connection signal="timeout" from="Coffee/CoffeeCooldown" to="." method="_on_coffee_cooldown_timeout"]
+[connection signal="timeout" from="Refrigerator/AttackFinish" to="." method="_on_attack_finish_timeout"]
+[connection signal="timeout" from="Refrigerator/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="Refrigerator/AttackTrigger" to="." method="_on_attack_trigger_body_entered"]
+[connection signal="body_entered" from="Refrigerator/FreezeTrigger" to="." method="_on_freeze_trigger_body_entered"]
+[connection signal="body_exited" from="Refrigerator/FreezeTrigger" to="." method="_on_freeze_trigger_body_exited"]
+[connection signal="body_entered" from="Fan/PushTrigger" to="." method="_on_any_trigger_body_entered"]
+[connection signal="body_exited" from="Fan/PushTrigger" to="." method="_on_any_trigger_body_exited"]
+[connection signal="timeout" from="FootstepTimer" to="." method="_on_footstep_timer_timeout"]

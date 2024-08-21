@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://btes4066pdf3v"]
+
+[ext_resource type="Script" path="res://Characters/Enemies/enemy.gd" id="1_nfahx"]
+[ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="2_ox4c4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ottm"]
+size = Vector2(128, 126)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwxhv"]
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 0.72549)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7sy4"]
+bg_color = Color(0.849762, 0.18902, 0.348692, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+platform_floor_layers = 0
+script = ExtResource("1_nfahx")
+acceleration = 900.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6ottm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ox4c4")
+
+[node name="Health Bar" type="ProgressBar" parent="."]
+z_index = 4
+offset_left = -21.0
+offset_top = -17.0
+offset_right = 119.0
+scale = Vector2(0.3, 0.3)
+theme_override_styles/background = SubResource("StyleBoxFlat_dwxhv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_w7sy4")
+max_value = 1.0
+value = 0.7
+show_percentage = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Navigation Refresh" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Navigation Refresh" to="." method="_on_navigation_refresh_timeout"]

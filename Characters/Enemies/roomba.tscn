@@ -1,0 +1,416 @@
+[gd_scene load_steps=34 format=3 uid="uid://cbk4nn7l420rg"]
+
+[ext_resource type="PackedScene" uid="uid://btes4066pdf3v" path="res://Characters/Enemies/enemy.tscn" id="1_f7kcy"]
+[ext_resource type="Script" path="res://Characters/Enemies/roomba.gd" id="2_qs4df"]
+[ext_resource type="Texture2D" uid="uid://c8bawrwoofb2r" path="res://Characters/Enemies/roomba-Sheet enemy.png" id="3_c03v5"]
+[ext_resource type="Texture2D" uid="uid://dqkgyolgkqy8l" path="res://Objects/Collectibles/parts.png" id="3_lnx81"]
+[ext_resource type="Texture2D" uid="uid://cipxetkc7x7xd" path="res://icon.svg" id="4_7onyp"]
+[ext_resource type="Texture2D" uid="uid://s7qna3fmpdir" path="res://Characters/Player/blender-Sheet.png" id="4_arxuh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5l3ut"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_we4x3"]
+resource_name = "DownIdle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 8, 11]
+}
+
+[sub_resource type="Animation" id="Animation_iagiq"]
+resource_name = "DownMove"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 8, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 8, 11]
+}
+
+[sub_resource type="Animation" id="Animation_uuteb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Roomba/Sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Blender/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_k3j0l"]
+resource_name = "RightIdle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+
+[sub_resource type="Animation" id="Animation_syfxd"]
+resource_name = "RightMove"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 7, 10]
+}
+
+[sub_resource type="Animation" id="Animation_l3d54"]
+resource_name = "UpIdle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 6, 9]
+}
+
+[sub_resource type="Animation" id="Animation_b38xw"]
+resource_name = "UpMove"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roomba/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blender/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 6, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1arbr"]
+_data = {
+"DownIdle": SubResource("Animation_we4x3"),
+"DownMove": SubResource("Animation_iagiq"),
+"RESET": SubResource("Animation_uuteb"),
+"RightIdle": SubResource("Animation_k3j0l"),
+"RightMove": SubResource("Animation_syfxd"),
+"UpIdle": SubResource("Animation_l3d54"),
+"UpMove": SubResource("Animation_b38xw")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l4xoa"]
+animation = &"UpIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pyfvg"]
+animation = &"RightIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0kri8"]
+animation = &"RightIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sv3n8"]
+animation = &"DownIdle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_wrthb"]
+auto_triangles = false
+blend_point_0/node = SubResource("AnimationNodeAnimation_l4xoa")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_pyfvg")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_0kri8")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_sv3n8")
+blend_point_3/pos = Vector2(0, 1)
+triangles = PackedInt32Array(0, 1, 2, 1, 2, 3)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q4abn"]
+animation = &"UpMove"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pali3"]
+animation = &"DownMove"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u6bw2"]
+animation = &"RightMove"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7455l"]
+animation = &"RightMove"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_6vlwj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_q4abn")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_pali3")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_u6bw2")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_7455l")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+sync = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g3pgw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ds4uj"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1mim4"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_10bgq"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_wrthb")
+states/Idle/position = Vector2(460, 126)
+states/Move/node = SubResource("AnimationNodeBlendSpace2D_6vlwj")
+states/Move/position = Vector2(630, 106)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_g3pgw"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_ds4uj"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_1mim4")]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c840y"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6xe7"]
+size = Vector2(10, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb06i"]
+size = Vector2(129, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kr1um"]
+size = Vector2(10, 12)
+
+[node name="Roomba" instance=ExtResource("1_f7kcy")]
+script = ExtResource("2_qs4df")
+search_delay = 1.0
+max_health = 80.0
+speed = 180.0
+acceleration = 1200.0
+knockback_multiplier = 1.3
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_5l3ut")
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
+z_index = 5
+position = Vector2(-1, -23)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_lnx81")
+hframes = 3
+
+[node name="Target Refresh" type="Timer" parent="." index="5"]
+wait_time = 0.2
+autostart = true
+
+[node name="Wait For Parts" type="Timer" parent="." index="6"]
+wait_time = 0.3
+
+[node name="Sprite Animator" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_1arbr")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="8"]
+tree_root = SubResource("AnimationNodeStateMachine_10bgq")
+anim_player = NodePath("../Sprite Animator")
+parameters/conditions/is_idle = true
+parameters/conditions/is_moving = false
+parameters/Idle/blend_position = Vector2(0.297244, -0.154185)
+parameters/Move/blend_position = Vector2(0, 0)
+
+[node name="Roomba" type="CollisionShape2D" parent="." index="9"]
+shape = SubResource("CircleShape2D_c840y")
+
+[node name="Sprite" type="Sprite2D" parent="Roomba" index="0"]
+position = Vector2(0, 1)
+texture = ExtResource("3_c03v5")
+hframes = 3
+vframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 64)
+
+[node name="Blender" type="CollisionShape2D" parent="." index="10"]
+visible = false
+shape = SubResource("RectangleShape2D_r6xe7")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Blender" index="0"]
+position = Vector2(0, -9)
+texture = ExtResource("4_arxuh")
+hframes = 3
+vframes = 4
+frame = 2
+
+[node name="AttackTrigger" type="Area2D" parent="Blender" index="1"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blender/AttackTrigger" index="0"]
+position = Vector2(71.5, 0.5)
+shape = SubResource("RectangleShape2D_cb06i")
+disabled = true
+
+[node name="Coffee" type="CollisionShape2D" parent="." index="11"]
+visible = false
+shape = SubResource("RectangleShape2D_kr1um")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Coffee" index="0"]
+modulate = Color(1, 0.577356, 0.031439, 1)
+texture = ExtResource("4_7onyp")
+
+[node name="Refrigerator" type="CollisionShape2D" parent="." index="12"]
+visible = false
+shape = SubResource("RectangleShape2D_kr1um")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Refrigerator" index="0"]
+modulate = Color(0.0431373, 1, 1, 1)
+texture = ExtResource("4_7onyp")
+
+[node name="Fan" type="CollisionShape2D" parent="." index="13"]
+visible = false
+shape = SubResource("RectangleShape2D_kr1um")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Fan" index="0"]
+visible = false
+modulate = Color(1, 0.294118, 0.627451, 1)
+texture = ExtResource("4_7onyp")
+
+[connection signal="timeout" from="Target Refresh" to="." method="_on_target_refresh_timeout"]
+[connection signal="timeout" from="Wait For Parts" to="." method="_on_wait_for_parts_timeout"]

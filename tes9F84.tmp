@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2jsf1hxg82s1"]
+
+[ext_resource type="PackedScene" uid="uid://ov16dtgcf52t" path="res://Characters/Player/Player.tscn" id="1_popsw"]
+[ext_resource type="PackedScene" uid="uid://rbtiyuejsqvb" path="res://Objects/Collectibles/collectible.tscn" id="2_5nv5g"]
+
+[node name="Testscene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_popsw")]
+position = Vector2(62, 77)
+
+[node name="Collectible" parent="." instance=ExtResource("2_5nv5g")]
+position = Vector2(241, 266)
